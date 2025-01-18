@@ -4,33 +4,48 @@
 
 ```mermaid
 graph TD
-    A[Course Overview] --> B[Language Guide]
-    A --> C[Programming]
-    A --> D[Hardware]
-    A --> E[Medical Devices]
-    A --> F[Advanced Topics]
+    A[Course Overview] --> B[Foundational Concepts]
+    A --> C[Language Transition]
+    A --> D[Programming Depth]
+    A --> E[Hardware Integration]
+    A --> F[Specialized Domains]
+    A --> G[Advanced Topics]
+    A --> H[Practical Implementation]
     
-    B --> G[Java to C]
-    B --> H[Mojo to C]
+    B --> I[Computational Principles]
+    B --> J[Digital Systems]
     
-    C --> I[Best Practices]
-    C --> J[Data Structures]
-    C --> K[Memory Management]
+    C --> K[Java to C]
+    C --> L[Mojo to C]
     
-    D --> L[Architecture]
-    D --> M[Integration]
-    D --> N[Debugging]
+    D --> M[Memory Management]
+    D --> N[Type Conversions]
+    D --> O[Error Handling]
     
-    E --> O[Safety]
-    E --> P[Compliance]
-    E --> Q[Implementation]
+    E --> P[Computer Architecture]
+    E --> Q[System Interactions]
     
-    F --> R[IC Design]
-    F --> S[Optimization]
-    F --> T[Emerging Tech]
+    F --> R[Medical Devices]
+    F --> S[Integrated Circuits]
+    
+    G --> T[Performance Optimization]
+    G --> U[Emerging Technologies]
+    
+    H --> V[Project-Based Learning]
+    H --> W[Industry Connections]
 ```
 
 ## Quick Links
+
+### 9. [Foundational Concepts](sections/09_foundational_concepts.md)
+- Computational thinking
+- Digital systems fundamentals
+- Core architecture principles
+
+### 10. [Language Transition Strategies](sections/10_language_transition_strategies.md)
+- Advanced Java to C migration
+- Mojo to C transformation techniques
+- Comparative language analysis
 
 ### 1. [Course Overview](sections/01_overview.md)
 - Course introduction
