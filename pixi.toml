@@ -11,3 +11,4 @@ version = "0.1.0"
 [dependencies]
 max = ">=24.6.0,<25"
 python = ">=3.12.8,<3.13"
+numpy = ">=1.26.4,<2"
