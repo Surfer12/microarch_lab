@@ -1,5 +1,6 @@
-from tensor import Tensor
-from math import log2
+   from tensor import Tensor, DType
+   from math import log2
+
 
 # Custom Dictionary Implementation for Mojo
 struct Dictionary:
@@ -85,7 +86,7 @@ struct CPUArchitectureSimulator:
         Returns:
             Tensor[DType.int64]: Encoded instruction as a tensor.
         """
-        var encoded = Tensor[DType.int64](shape=(1,))
+        var encoded = Tensor[DType.int64](values=[0])
         
         # Basic instruction encoding simulation
         if opcode == "LOAD":
@@ -177,7 +178,7 @@ struct CPUArchitectureSimulator:
         Returns:
             Dictionary: Cache performance metrics.
         """
-        var cache_hit_rates = Tensor[DType.float32](shape=(self.cache_levels,))
+        var cache_hit_rates = Tensor[DType.float32](values=[0.0 for _ in range(self.cache_levels)])
         
         # Simplified cache simulation
         for level in range(self.cache_levels):
