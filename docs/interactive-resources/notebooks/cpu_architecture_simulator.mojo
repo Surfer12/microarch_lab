@@ -76,16 +76,16 @@ struct CPUArchitectureSimulator:
     # Instruction Encoding Simulation
     fn encode_instruction(self, opcode: String, operands: List[Int]) -> Tensor[DType.int64]:
         """
-        Simulate instruction encoding process
+        Simulate instruction encoding process.
         
         Args:
-            opcode: Instruction operation code
-            operands: List of register or immediate operands
+            opcode (String): Instruction operation code.
+            operands (List[Int]): List of register or immediate operands.
         
         Returns:
-            Encoded instruction as a tensor
+            Tensor[DType.int64]: Encoded instruction as a tensor.
         """
-        var encoded = Tensor[DType.int64](1)
+        var encoded = Tensor[DType.int64](shape=(1,))
         
         # Basic instruction encoding simulation
         if opcode == "LOAD":
@@ -104,13 +104,13 @@ struct CPUArchitectureSimulator:
     # Instruction Decoding Simulation
     fn decode_instruction(self, encoded_instruction: Tensor[DType.int64]) -> Dictionary:
         """
-        Simulate instruction decoding process
+        Simulate instruction decoding process.
         
         Args:
-            encoded_instruction: Encoded instruction tensor
+            encoded_instruction (Tensor[DType.int64]): Encoded instruction tensor.
         
         Returns:
-            Decoded instruction details
+            Dictionary: Decoded instruction details.
         """
         var decoded = Dictionary(is_float=False)
         var instruction = encoded_instruction[0]
@@ -144,13 +144,13 @@ struct CPUArchitectureSimulator:
     # Performance Analysis
     fn analyze_performance(self, instructions: List[Tensor[DType.int64]]) -> Dictionary:
         """
-        Analyze CPU performance for a set of instructions
+        Analyze CPU performance for a set of instructions.
         
         Args:
-            instructions: List of encoded instructions
+            instructions (List[Tensor[DType.int64]]): List of encoded instructions.
         
         Returns:
-            Performance metrics dictionary
+            Dictionary: Performance metrics dictionary.
         """
         var total_instructions = len(instructions)
         var cycles_per_instruction: Float32 = 4.0  # Simplified CPI model
@@ -169,22 +169,20 @@ struct CPUArchitectureSimulator:
     # Cache Performance Simulation
     fn simulate_cache_performance(self, memory_accesses: List[Int]) -> Dictionary:
         """
-        Simulate multi-level cache performance
+        Simulate multi-level cache performance.
         
         Args:
-            memory_accesses: List of memory access addresses
+            memory_accesses (List[Int]): List of memory access addresses.
         
         Returns:
-            Cache performance metrics
+            Dictionary: Cache performance metrics.
         """
-        var cache_hit_rates = Tensor[DType.float32](self.cache_levels)
-        var cache_miss_rates = Tensor[DType.float32](self.cache_levels)
+        var cache_hit_rates = Tensor[DType.float32](shape=(self.cache_levels,))
         
         # Simplified cache simulation
         for level in range(self.cache_levels):
             var hit_probability: Float32 = 1.0 - (1.0 / Float32(2.0 ** (level + 1)))
             cache_hit_rates[level] = hit_probability
-            cache_miss_rates[level] = 1.0 - hit_probability
         
         var cache_metrics = Dictionary(is_float=True)
         cache_metrics.set_float("l1_hit_rate", cache_hit_rates[0])

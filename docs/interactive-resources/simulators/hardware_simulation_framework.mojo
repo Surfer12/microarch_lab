@@ -1,25 +1,39 @@
-from python import Python
-from tensor import Tensor
-from collections import Dict
+from collections import Dict, List
+from tensor import Tensor, DType
 
-# Hardware Simulation Base Class
+# Define a generic type if 'Any' is not available, or use an appropriate type.
+type Any = Union[Int, Float, String, Tensor, List[Any]]
+
+# Hardware Simulation Base Trait
 trait HardwareSimulator:
-    fn simulate(self, input_data: Dict[String, Object]) -> Dict[String, Object]:
+    fn simulate(self, input_data: Dict[String, Any]) -> Dict[String, Any]:
         """
-        Base simulation method to be overridden by specific simulators
+        Base simulation method to be overridden by specific simulators.
+        
+        Args:
+            input_data (Dict[String, Any]): Input data for the simulation.
+        
+        Returns:
+            Dict[String, Any]: Simulation results.
         """
-        var result = Dict[String, Object]()
+        var result = Dict[String, Any]()
         result["error"] = "Simulation not implemented"
         return result
 
 # CPU Simulator
-struct CPUSimulator:
-    fn simulate(self, input_data: Dict[String, Object]) -> Dict[String, Object]:
+struct CPUSimulator: HardwareSimulator:
+    fn simulate(self, input_data: Dict[String, Any]) -> Dict[String, Any]:
         """
-        Simulate CPU operations with register and instruction modeling
+        Simulate CPU operations with register and instruction modeling.
+        
+        Args:
+            input_data (Dict[String, Any]): Input data containing registers and instructions.
+        
+        Returns:
+            Dict[String, Any]: Simulation results including final registers and instruction count.
         """
-        var registers = input_data.get("registers", Tensor[DType.float32](8))
-        var instructions = input_data.get("instructions", List[List[Object]]())
+        var registers = input_data.get("registers", Tensor)
+        var instructions = input_data.get("instructions", List[List[Any]]())
         
         for instruction in instructions:
             var op = instruction[0]
@@ -28,16 +42,22 @@ struct CPUSimulator:
             elif op == "ADD":
                 registers[instruction[1]] = registers[instruction[2]] + registers[instruction[3]]
         
-        var result = Dict[String, Object]()
+        var result = Dict[String, Any]()
         result["final_registers"] = registers
         result["instruction_count"] = len(instructions)
         return result
 
 # Memory Hierarchy Simulator
-struct MemoryHierarchySimulator:
-    fn simulate(self, input_data: Dict[String, Object]) -> Dict[String, Object]:
+struct MemoryHierarchySimulator: HardwareSimulator:
+    fn simulate(self, input_data: Dict[String, Any]) -> Dict[String, Any]:
         """
-        Simulate memory hierarchy performance with cache modeling
+        Simulate memory hierarchy performance with cache modeling.
+        
+        Args:
+            input_data (Dict[String, Any]): Input data containing cache levels and memory access patterns.
+        
+        Returns:
+            Dict[String, Any]: Simulation results including cache hits, misses, and hit rates.
         """
         var cache_levels = input_data.get("cache_levels", 3)
         var memory_access_pattern = input_data.get("memory_access_pattern", List[String]())
@@ -52,59 +72,67 @@ struct MemoryHierarchySimulator:
             else:
                 cache_misses[cache_levels - 1] += 1
         
-        var result = Dict[String, Object]()
+        var result = Dict[String, Any]()
         result["cache_hits"] = cache_hits
         result["cache_misses"] = cache_misses
         
         # Calculate hit rates
         var hit_rates = Tensor[DType.float32](cache_levels)
         for i in range(cache_levels):
-            hit_rates[i] = (
-                cache_hits[i] / (cache_hits[i] + cache_misses[i]) 
-                if (cache_hits[i] + cache_misses[i]) > 0 
-                else 0.0
-            )
+            if (cache_hits[i] + cache_misses[i]) > 0:
+                hit_rates[i] = cache_hits[i] / (cache_hits[i] + cache_misses[i])
+            else:
+                hit_rates[i] = 0.0
         
         result["hit_rates"] = hit_rates
         return result
     
     fn _simulate_cache_lookup(self, address: String, cache_levels: Int) -> Optional[Int]:
         """
-        Simplified cache lookup simulation
+        Simplified cache lookup simulation.
+        
+        Args:
+            address (String): Memory address to lookup.
+            cache_levels (Int): Number of cache levels.
+        
+        Returns:
+            Optional[Int]: Cache level hit or None if miss.
         """
         return None if len(address) % cache_levels == 0 else 0
 
 # Simulation Framework
 struct HardwareSimulationFramework:
-    var simulators: Dict[String, Object]
+    var simulators: Dict[String, HardwareSimulator]
     
     fn __init__(inout self):
-        self.simulators = Dict[String, Object]()
+        self.simulators = Dict[String, HardwareSimulator]()
     
-    fn register_simulator(inout self, name: String, simulator: Object):
+    fn register_simulator(inout self, name: String, simulator: HardwareSimulator):
         """
-        Register a new hardware simulator
+        Register a new hardware simulator.
+        
+        Args:
+            name (String): Name of the simulator.
+            simulator (HardwareSimulator): Simulator instance.
         """
         self.simulators[name] = simulator
     
-    fn simulate(self, simulator_name: String, input_data: Dict[String, Object]) -> Dict[String, Object]:
+    fn simulate(self, simulator_name: String, input_data: Dict[String, Any]) -> Dict[String, Any]:
         """
-        Run simulation for a specific simulator
+        Run simulation for a specific simulator.
+        
+        Args:
+            simulator_name (String): Name of the simulator to run.
+            input_data (Dict[String, Any]): Input data for the simulation.
+        
+        Returns:
+            Dict[String, Any]: Simulation results or error messages.
         """
         if simulator_name not in self.simulators:
-            var error_result = Dict[String, Object]()
-            error_result["error"] = "Simulator " + simulator_name + " not found"
-            return error_result
+            return Dict[String, Any]({"error": "Simulator " + simulator_name + " not found"})
         
         var simulator = self.simulators[simulator_name]
-        if isinstance[CPUSimulator](simulator):
-            return simulator.simulate(input_data)
-        elif isinstance[MemoryHierarchySimulator](simulator):
-            return simulator.simulate(input_data)
-        
-        var error_result = Dict[String, Object]()
-        error_result["error"] = "Unsupported simulator type"
-        return error_result
+        return simulator.simulate(input_data)
 
 # Main simulation entry point
 fn main():
@@ -115,9 +143,8 @@ fn main():
     sim_framework.register_simulator("cpu", CPUSimulator())
     sim_framework.register_simulator("memory_hierarchy", MemoryHierarchySimulator())
     
-    # Example simulation usage
-    var cpu_input = Dict[String, Object]()
-    cpu_input["registers"] = Tensor[DType.float32](8)
+    # Example simulation usage for CPU
+    var cpu_input = Dict[String, Any]()
     cpu_input["instructions"] = [
         ["LOAD", 0, 10],
         ["LOAD", 1, 20],
@@ -127,7 +154,8 @@ fn main():
     var cpu_result = sim_framework.simulate("cpu", cpu_input)
     print("CPU Simulation Result:", cpu_result)
     
-    var memory_input = Dict[String, Object]()
+    # Example simulation usage for Memory Hierarchy
+    var memory_input = Dict[String, Any]()
     memory_input["cache_levels"] = 3
     memory_input["memory_access_pattern"] = ["addr1", "addr2", "addr3"]
     
