@@ -47,6 +47,20 @@ graph TD
 - Mojo to C transformation techniques
 - Comparative language analysis
 
+### 11. [Error Handling and Safety](sections/11_error_handling_and_safety.md)
+- Defensive programming techniques
+- Error detection strategies
+- Robust code design
+- Debugging methodologies
+
+### 12. [Computer Architecture and System Interactions](sections/12_computer_architecture_and_system_interactions.md)
+- CPU design principles
+- Instruction Set Architecture
+- Memory hierarchy
+- Low-level system interactions
+- GPIO and DMA programming
+- Real-time systems
+
 ### 1. [Course Overview](sections/01_overview.md)
 - Course introduction
 - Prerequisites
