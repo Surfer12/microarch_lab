@@ -1,0 +1,4 @@
+Welcome to CIS 240!
+In this class we'll see how programs run on hardware. To do this, we'll first look at how digital hardware is designed, built, and what it needs to run. Once we see how the hardware works, we'll see how the programs you write in a high-level language like C get converted so that the hardware can do what your programs ask it to do. The last couple of weeks will be a project so you can apply what you've learned in the course.
+
+Since class is held in a lab (basically), we might do a traditional lecture the first hour and a lab the second hour. Or lab the first hour, and lecture the second. Or all lab. Or, in maybe in one or two rare cases, we might talk most of the class time. It will depend on the day and topic. No matter what, if we try something new, I will try to get you to play with it as soon as it makes sense.
