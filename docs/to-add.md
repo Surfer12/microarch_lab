@@ -1,5 +1,5 @@
 ### Visual Aids and Diagrams
-
+add 
 - **Create Diagrams and Flowcharts**: Illustrate complex concepts like compiler architecture stages or hardware interactions.
 - **Interactive Code Examples**: Use tools like Jupyter Notebooks to allow students to modify and run code snippets directly in the browser. Include explanations and visualizations alongside the code to enhance understanding.
 
