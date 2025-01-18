@@ -14,6 +14,12 @@ struct Dictionary:
         self.float_values = List[Float32]()
         self.is_float_dict = is_float
     
+    fn __copyinit__(inout self, other: Self):
+        self.keys = other.keys
+        self.int_values = other.int_values
+        self.float_values = other.float_values
+        self.is_float_dict = other.is_float_dict
+    
     fn set_int(inout self, key: String, value: Int):
         debug_assert(not self.is_float_dict, "Attempting to set int in float dictionary")
         for i in range(len(self.keys)):
@@ -114,22 +120,22 @@ struct CPUArchitectureSimulator:
         
         if opcode_bits == 0b0001:
             decoded.set_int("opcode", 1)  # LOAD
-            decoded.set_int("destination_register", (instruction >> 20) & 0xFF)
-            decoded.set_int("immediate_value", instruction & 0xFFFFF)
+            decoded.set_int("destination_register", Int((instruction >> 20) & 0xFF))
+            decoded.set_int("immediate_value", Int(instruction & 0xFFFFF))
         elif opcode_bits == 0b0010:
             decoded.set_int("opcode", 2)  # STORE
-            decoded.set_int("source_register", (instruction >> 20) & 0xFF)
-            decoded.set_int("memory_address", instruction & 0xFFFFF)
+            decoded.set_int("source_register", Int((instruction >> 20) & 0xFF))
+            decoded.set_int("memory_address", Int(instruction & 0xFFFFF))
         elif opcode_bits == 0b0011:
             decoded.set_int("opcode", 3)  # ADD
-            decoded.set_int("destination_register", (instruction >> 20) & 0xFF)
-            decoded.set_int("source_register1", (instruction >> 12) & 0xFF)
-            decoded.set_int("source_register2", instruction & 0xFFF)
+            decoded.set_int("destination_register", Int((instruction >> 20) & 0xFF))
+            decoded.set_int("source_register1", Int((instruction >> 12) & 0xFF))
+            decoded.set_int("source_register2", Int(instruction & 0xFFF))
         elif opcode_bits == 0b0100:
             decoded.set_int("opcode", 4)  # SUB
-            decoded.set_int("destination_register", (instruction >> 20) & 0xFF)
-            decoded.set_int("source_register1", (instruction >> 12) & 0xFF)
-            decoded.set_int("source_register2", instruction & 0xFFF)
+            decoded.set_int("destination_register", Int((instruction >> 20) & 0xFF))
+            decoded.set_int("source_register1", Int((instruction >> 12) & 0xFF))
+            decoded.set_int("source_register2", Int(instruction & 0xFFF))
         else:
             decoded.set_int("opcode", 0)  # INVALID
         
@@ -153,8 +159,8 @@ struct CPUArchitectureSimulator:
         var ipc = total_instructions / total_cycles  # Instructions per cycle
         
         var performance_metrics = Dictionary(is_float=True)
-        performance_metrics.set_float("total_instructions", total_instructions)
-        performance_metrics.set_float("total_cycles", total_cycles)
+        performance_metrics.set_float("total_instructions", Float32(total_instructions))
+        performance_metrics.set_float("total_cycles", Float32(total_cycles))
         performance_metrics.set_float("instructions_per_cycle", ipc)
         performance_metrics.set_float("clock_frequency", 3.5)  # GHz, example value
         
@@ -176,7 +182,7 @@ struct CPUArchitectureSimulator:
         
         # Simplified cache simulation
         for level in range(self.cache_levels):
-            var hit_probability: Float32 = 1.0 - (1.0 / (2.0 ** (level + 1)))
+            var hit_probability: Float32 = 1.0 - (1.0 / Float32(2.0 ** (level + 1)))
             cache_hit_rates[level] = hit_probability
             cache_miss_rates[level] = 1.0 - hit_probability
         
