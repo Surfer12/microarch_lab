@@ -3,6 +3,8 @@
 ## Overview
 This Mermaid diagram visualizes the comprehensive structure of the CIS 240 course, showing the interconnected learning paths and key focus areas.
 
+<!-- [MermaidChart: d428ef2a-84b6-4c41-bb3f-ec28f3d9a113] -->
+
 ## Diagram Description
 ```mermaid
 graph TD
