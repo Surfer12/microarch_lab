@@ -1,0 +1,29 @@
+(microarch_lab) ryanoates@Ryans-MacBook-Pro notebooks % python cpu_architecture_simulator.py
+Decoded Instruction:
+opcode: 1
+destination_register: 1
+immediate_value: 100
+Decoded Instruction:
+opcode: 1
+destination_register: 2
+immediate_value: 200
+Decoded Instruction:
+opcode: 3
+destination_register: 3
+source_register1: 1
+source_register2: 2
+Decoded Instruction:
+opcode: 2
+source_register: 3
+memory_address: 300
+
+Performance Metrics:
+total_instructions: 4.0
+total_cycles: 16.0
+instructions_per_cycle: 0.25
+clock_frequency: 3.5
+
+Cache Performance:
+l1_hit_rate: 99.9755859375
+l2_hit_rate: 99.993896484375
+l3_hit_rate: 99.99980926513672

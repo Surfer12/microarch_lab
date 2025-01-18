@@ -1,4 +1,4 @@
-import numpy as np
+import numpy as np # type: ignore
 
 # Custom Dictionary Implementation for Python
 class Dictionary:

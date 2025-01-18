@@ -1,5 +1,6 @@
 # Import necessary libraries
-import numpy as np
+
+import numpy as np # type: ignore # this is handled in the pixi.toml file
 
 # Define the Dictionary class
 class Dictionary:
