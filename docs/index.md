@@ -8,21 +8,26 @@ graph TD
     A --> C[Programming]
     A --> D[Hardware]
     A --> E[Medical Devices]
+    A --> F[Advanced Topics]
     
-    B --> F[Java to C]
-    B --> G[Mojo to C]
+    B --> G[Java to C]
+    B --> H[Mojo to C]
     
-    C --> H[Best Practices]
-    C --> I[Data Structures]
-    C --> J[Memory Management]
+    C --> I[Best Practices]
+    C --> J[Data Structures]
+    C --> K[Memory Management]
     
-    D --> K[Architecture]
-    D --> L[Integration]
-    D --> M[Debugging]
+    D --> L[Architecture]
+    D --> M[Integration]
+    D --> N[Debugging]
     
-    E --> N[Safety]
-    E --> O[Compliance]
-    E --> P[Implementation]
+    E --> O[Safety]
+    E --> P[Compliance]
+    E --> Q[Implementation]
+    
+    F --> R[IC Design]
+    F --> S[Optimization]
+    F --> T[Emerging Tech]
 ```
 
 ## Quick Links
@@ -74,6 +79,15 @@ graph TD
 - Power management
 - Regulatory compliance
 
+### 8. [Advanced Topics and Optimization](sections/08_advanced_topics.md)
+- Integrated Circuits Design
+- Signal Processing Techniques
+- Power Management
+- Performance Optimization
+- Simulation and Modeling
+- Emerging Technologies
+- Interdisciplinary Insights
+
 ## Study Path Recommendations
 
 ### Beginner Path
@@ -122,3 +136,21 @@ Want to improve this documentation? Here's how:
 2. Propose improvements via pull requests
 3. Share additional examples and case studies
 4. Contribute to the practice materials 
+
+## Diagram Catalog
+
+### Architecture Diagrams
+- [Course Structure](/diagrams/architecture/course_structure.md)
+  - Visualizes the comprehensive course structure and learning paths
+
+### Hardware Diagrams
+- [Memory Hierarchy](/diagrams/hardware/memory_hierarchy.md)
+  - Illustrates the complex memory levels in computer systems
+
+### Medical Device Diagrams
+- [System Architecture](/diagrams/medical_devices/system_architecture.md)
+  - Explores the layered architecture of medical devices
+
+### Optimization Diagrams
+- [Performance Strategies](/diagrams/optimization/performance_strategies.md)
+  - Breaks down optimization techniques across different domains 
