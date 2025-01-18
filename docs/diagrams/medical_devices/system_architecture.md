@@ -3,6 +3,11 @@
 ## Overview
 This Mermaid diagram provides a comprehensive visualization of a medical device's architectural layers, highlighting the complex interactions between hardware, firmware, and application components.
 
+
+<!-- [MermaidChart: 14305222-22be-48f9-8445-8f96e530278e] -->
+
+
+
 ## Diagram Description
 ```mermaid
 graph TD

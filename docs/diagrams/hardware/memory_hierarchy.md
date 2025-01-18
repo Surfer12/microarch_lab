@@ -3,6 +3,8 @@
 ## Overview
 This Mermaid diagram illustrates the complex memory hierarchy in modern computer systems, showing the relationship between different levels of memory and storage.
 
+<!-- [MermaidChart: 425bbb25-b652-4f80-aea3-fb6273eb2257] -->
+
 ## Diagram Description
 ```mermaid
 graph TD
