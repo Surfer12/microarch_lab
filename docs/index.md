@@ -61,6 +61,13 @@ graph TD
 - GPIO and DMA programming
 - Real-time systems
 
+### 13. [Integrated Circuit Design](sections/13_integrated_circuit_design.md)
+- Semiconductor physics fundamentals
+- Transistor architecture
+- Circuit design methodology
+- Fabrication processes
+- Signal processing techniques
+
 ### 1. [Course Overview](sections/01_overview.md)
 - Course introduction
 - Prerequisites
