@@ -125,6 +125,310 @@ This course explores the intricate relationship between software and hardware, f
   }
   ```
 
+### Data Type Conversions and Transformations
+
+#### 1. String and Number Conversions
+```c
+// String to Integer conversion
+char str[] = "12345";
+int num = atoi(str);              // Basic conversion
+long lnum = strtol(str, NULL, 10); // More control, base 10
+
+// Integer to String conversion
+int num = 12345;
+char str[20];
+sprintf(str, "%d", num);          // Using sprintf
+// or
+snprintf(str, sizeof(str), "%d", num);  // Safer, prevents buffer overflow
+
+// Floating point conversions
+char float_str[] = "123.45";
+float f = atof(float_str);        // String to float
+double d = strtod(float_str, NULL); // String to double
+```
+
+#### 2. Base Conversions
+```c
+// Hexadecimal string to integer
+char hex[] = "1A";
+int hex_val = (int)strtol(hex, NULL, 16);  // Base 16
+
+// Binary string to integer
+char bin[] = "1010";
+int bin_val = (int)strtol(bin, NULL, 2);   // Base 2
+
+// Integer to hex string
+int val = 26;
+char hex_str[10];
+sprintf(hex_str, "%X", val);  // Uppercase hex
+sprintf(hex_str, "%x", val);  // Lowercase hex
+
+// Working with different bases
+printf("Decimal: %d\n", val);     // Base 10
+printf("Hex: 0x%X\n", val);       // Base 16
+printf("Octal: %o\n", val);       // Base 8
+```
+
+#### 3. Data Structure Transformations
+```c
+// Array to Linked List conversion
+typedef struct Node {
+    int data;
+    struct Node* next;
+} Node;
+
+Node* array_to_list(int arr[], int size) {
+    if (size == 0) return NULL;
+    
+    Node* head = malloc(sizeof(Node));
+    if (!head) return NULL;
+    
+    head->data = arr[0];
+    head->next = NULL;
+    
+    Node* current = head;
+    for (int i = 1; i < size; i++) {
+        Node* new_node = malloc(sizeof(Node));
+        if (!new_node) {
+            // Handle error: free allocated memory
+            while (head) {
+                Node* temp = head;
+                head = head->next;
+                free(temp);
+            }
+            return NULL;
+        }
+        new_node->data = arr[i];
+        new_node->next = NULL;
+        current->next = new_node;
+        current = new_node;
+    }
+    return head;
+}
+
+// Linked List to Array conversion
+int* list_to_array(Node* head, int* size) {
+    // Count nodes
+    int count = 0;
+    Node* current = head;
+    while (current) {
+        count++;
+        current = current->next;
+    }
+    
+    // Allocate array
+    int* arr = malloc(count * sizeof(int));
+    if (!arr) return NULL;
+    
+    // Copy data
+    current = head;
+    for (int i = 0; i < count; i++) {
+        arr[i] = current->data;
+        current = current->next;
+    }
+    
+    *size = count;
+    return arr;
+}
+```
+
+#### 4. File Format Conversions
+```c
+// Text to Binary file conversion
+int text_to_binary(const char* input_file, const char* output_file) {
+    FILE *in, *out;
+    char ch;
+    
+    in = fopen(input_file, "r");
+    if (!in) return -1;
+    
+    out = fopen(output_file, "wb");
+    if (!out) {
+        fclose(in);
+        return -1;
+    }
+    
+    while ((ch = fgetc(in)) != EOF) {
+        fwrite(&ch, sizeof(char), 1, out);
+    }
+    
+    fclose(in);
+    fclose(out);
+    return 0;
+}
+
+// Binary to Text file conversion
+int binary_to_text(const char* input_file, const char* output_file) {
+    FILE *in, *out;
+    char ch;
+    
+    in = fopen(input_file, "rb");
+    if (!in) return -1;
+    
+    out = fopen(output_file, "w");
+    if (!out) {
+        fclose(in);
+        return -1;
+    }
+    
+    while (fread(&ch, sizeof(char), 1, in) == 1) {
+        fputc(ch, out);
+    }
+    
+    fclose(in);
+    fclose(out);
+    return 0;
+}
+```
+
+#### 5. Bit Manipulation and Type Punning
+```c
+// Float to bits visualization
+void print_float_bits(float f) {
+    uint32_t bits;
+    memcpy(&bits, &f, sizeof(float));
+    
+    for (int i = 31; i >= 0; i--) {
+        printf("%d", (bits >> i) & 1);
+        if (i == 31 || i == 23) printf(" ");
+    }
+    printf("\n");
+}
+
+// Type punning example (note: implementation-defined behavior)
+union FloatInt {
+    float f;
+    uint32_t i;
+};
+
+void analyze_float(float f) {
+    union FloatInt fi;
+    fi.f = f;
+    printf("Float: %f\n", fi.f);
+    printf("Bits: 0x%08X\n", fi.i);
+}
+```
+
+### Conversion Pitfalls and Best Practices
+
+#### 1. Type Conversion Safety
+```c
+// WRONG: Potential data loss
+int large_num = 1000000;
+short small_num = large_num;  // May truncate
+
+// BETTER: Check ranges
+if (large_num > SHRT_MAX || large_num < SHRT_MIN) {
+    // Handle error
+} else {
+    short small_num = (short)large_num;
+}
+
+// WRONG: Sign extension issues
+unsigned int u = 0xFFFFFFFF;
+int i = u;  // Implementation-defined behavior
+
+// BETTER: Explicit conversion with checks
+if (u > INT_MAX) {
+    // Handle error
+} else {
+    int i = (int)u;
+}
+```
+
+#### 2. String Conversion Safety
+```c
+// WRONG: Buffer overflow risk
+char small_buffer[5];
+int big_number = 123456;
+sprintf(small_buffer, "%d", big_number);  // Buffer overflow!
+
+// BETTER: Use snprintf
+char small_buffer[5];
+int big_number = 123456;
+if (snprintf(small_buffer, sizeof(small_buffer), "%d", big_number) >= sizeof(small_buffer)) {
+    // Handle truncation
+}
+
+// WRONG: No error checking
+char* str = "123abc";
+int num = atoi(str);  // Silently returns 123
+
+// BETTER: Use strtol for error checking
+char* str = "123abc";
+char* endptr;
+errno = 0;
+long num = strtol(str, &endptr, 10);
+if (errno != 0 || endptr == str || *endptr != '\0') {
+    // Handle conversion error
+}
+```
+
+#### 3. Memory Management in Conversions
+```c
+// WRONG: Memory leak in error case
+char* convert_to_uppercase(const char* input) {
+    char* result = malloc(strlen(input) + 1);
+    for (int i = 0; input[i]; i++) {
+        result[i] = toupper(input[i]);
+        if (some_error_condition) return NULL;  // Memory leak!
+    }
+    result[strlen(input)] = '\0';
+    return result;
+}
+
+// BETTER: Clean up on error
+char* convert_to_uppercase(const char* input) {
+    char* result = malloc(strlen(input) + 1);
+    if (!result) return NULL;
+    
+    for (int i = 0; input[i]; i++) {
+        result[i] = toupper(input[i]);
+        if (some_error_condition) {
+            free(result);
+            return NULL;
+        }
+    }
+    result[strlen(input)] = '\0';
+    return result;
+}
+```
+
+#### 4. Platform-Dependent Conversions
+```c
+// WRONG: Assumes sizeof(int) == 4
+uint32_t convert_to_network_order(int value) {
+    return htonl(value);
+}
+
+// BETTER: Explicit about size
+uint32_t convert_to_network_order(int32_t value) {
+    return htonl((uint32_t)value);
+}
+
+// WRONG: Assumes endianness
+float bits_to_float(uint32_t bits) {
+    return *(float*)&bits;  // Type-punning, undefined behavior
+
+// BETTER: Use memcpy
+float bits_to_float(uint32_t bits) {
+    float result;
+    memcpy(&result, &bits, sizeof(float));
+    return result;
+}
+```
+
+#### 5. Best Practices Summary
+- Always check for conversion errors
+- Use appropriate buffer sizes
+- Clean up resources on error paths
+- Be explicit about types and sizes
+- Consider platform differences
+- Document assumptions and requirements
+- Use safe alternatives to dangerous functions
+- Validate input before conversion
+- Handle edge cases gracefully
+
 ### Practical C Examples
 
 - **Dynamic Array Implementation**
