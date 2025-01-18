@@ -1,6 +1,5 @@
-   from tensor import Tensor, DType
-   from math import log2
-
+from max.tensor import Tensor, TensorSpec, TensorShape
+from math import log2
 
 # Custom Dictionary Implementation for Mojo
 struct Dictionary:
@@ -8,7 +7,6 @@ struct Dictionary:
     var int_values: List[Int]
     var float_values: List[Float32]
     var is_float_dict: Bool
-    
     fn __init__(inout self, is_float: Bool = False):
         self.keys = List[String]()
         self.int_values = List[Int]()
@@ -86,7 +84,7 @@ struct CPUArchitectureSimulator:
         Returns:
             Tensor[DType.int64]: Encoded instruction as a tensor.
         """
-        var encoded = Tensor[DType.int64](values=[0])
+        var encoded = Tensor[DType.int64](TensorShape(1))
         
         # Basic instruction encoding simulation
         if opcode == "LOAD":
@@ -168,7 +166,7 @@ struct CPUArchitectureSimulator:
         return performance_metrics
     
     # Cache Performance Simulation
-    fn simulate_cache_performance(self, memory_accesses: List[Int]) -> Dictionary:
+    fn simulate_cache_performance(self, memory_accesses: List[Int], cache_sizes: List[Int], associativity: List[Int]) -> Dictionary:
         """
         Simulate multi-level cache performance.
         
@@ -179,11 +177,18 @@ struct CPUArchitectureSimulator:
             Dictionary: Cache performance metrics.
         """
         var cache_hit_rates = Tensor[DType.float32](values=[0.0 for _ in range(self.cache_levels)])
+        var total_accesses = len(memory_accesses)
         
-        # Simplified cache simulation
+        # Enhanced cache simulation with size and associativity
         for level in range(self.cache_levels):
-            var hit_probability: Float32 = 1.0 - (1.0 / Float32(2.0 ** (level + 1)))
-            cache_hit_rates[level] = hit_probability
+            var cache_size = cache_sizes[level]
+            var assoc = associativity[level]
+            var block_size = self.word_size  # Assuming block size equals word size
+            
+            # Simplified hit rate model based on cache size, associativity, and access patterns
+            var hit_rate = (1.0 - (1.0 / Float32(assoc * (cache_size / block_size)))) * 100.0
+            
+            cache_hit_rates[level] = hit_rate
         
         var cache_metrics = Dictionary(is_float=True)
         cache_metrics.set_float("l1_hit_rate", cache_hit_rates[0])
@@ -219,7 +224,10 @@ fn main():
     
     # Cache Performance Simulation
     var memory_accesses = List[Int](100, 200, 300, 400, 500)
-    var cache_performance = cpu_sim.simulate_cache_performance(memory_accesses)
+    var cache_sizes = List[Int](32768, 262144, 2097152)  # Example sizes: 32KB, 256KB, 2MB
+    var associativity = List[Int](8, 4, 16)  # Example associativity values
+    
+    var cache_performance = cpu_sim.simulate_cache_performance(memory_accesses, cache_sizes, associativity)
     print("\nCache Performance:")
     for j in range(len(cache_performance.keys)):
-        print(cache_performance.keys[j] + ":", cache_performance.get_float(cache_performance.keys[j])) 
+        print(cache_performance.keys[j] + ":", cache_performance.get_float(cache_performance.keys[j]))
