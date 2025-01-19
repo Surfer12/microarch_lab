@@ -13,11 +13,11 @@
 String str = new String("Hello");
 
 // C: Manual memory management required
-char* str = malloc(6 * sizeof(char));
-strcpy(str, "Hello");
+// `char* str` declares a pointer to a character, which will hold the string.
+char* str = malloc(6 * sizeof(char));  // `malloc` allocates 6 bytes of memory for the string "Hello" plus null terminator. `sizeof(char)` ensures we allocate the correct size for each character.
+strcpy(str, "Hello");  // `strcpy` copies the string "Hello" into the memory location pointed to by `str`. This function assumes the destination has enough space.
 // Must remember to free!
-free(str);
-```
+free(str);  // `free` deallocates the memory previously allocated with `malloc`. This prevents memory leaks, where memory is used but not released.
 
 ### Important C Concepts for Java Developers
 - Understanding stack vs heap memory
@@ -27,7 +27,7 @@ free(str);
 ```c
 // Instead of Java classes, use structs
 struct Person {
-    char* name;
+    char* inital;  // `inital` is a pointer to a character, which will hold the initial.
     int age;
     void (*print)(struct Person*);  // Function pointer for methods
 };
@@ -51,11 +51,13 @@ fn process_data[T: DType](data: Buffer[T]):
 // C: Manual memory handling
 void* process_data(void* data, size_t size) {
     void* result = malloc(size);
-    if (!result) return NULL;
-    // Must handle memory manually
+    if (!result) {
+        // Memory allocation failed, return NULL to indicate error
+        return NULL;
+    }
+    // Memory must be manually freed by the caller after use, typically when the result is no longer needed or at the end of the program.
     return result;
 }
-```
 
 ### Performance Optimization
 - Understanding cache alignment
