@@ -9,17 +9,19 @@
         "source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind",
         "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=cached"
     ],
-    "settings": {
-        "terminal.integrated.shell.linux": "/bin/bash",
-        "remote.extensionKind": {
-            "ms-vscode-remote.remote-wsl": "ui"
+    "customizations": {
+        "vscode": {
+            "settings": {
+                "terminal.integrated.shellIntegration.enabled": true,
+                "terminal.integrated.shell.linux": "bash"
+            },
+            "extensions": [
+                "ms-vscode-remote.remote-wsl",
+                "ms-vscode-remote.remote-containers",
+                "ms-python.python",
+                "ms-vscode.cpptools"
+            ]
         }
     },
-    "extensions": [
-        "ms-vscode-remote.remote-wsl",
-        "ms-vscode-remote.remote-containers",
-        "ms-python.python",
-        "ms-vscode.cpptools"
-    ],
     "postCreateCommand": "bash .devcontainer/post-create.sh"
 }
