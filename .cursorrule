@@ -1,0 +1,43 @@
+# .cursorrule file for Python/Mojo file naming conventions
+python_mojo:
+  naming_conventions:
+    - use_lowercase: true
+    - use_underscores: true
+    - avoid_special_chars: true
+    - max_length: 50
+    - examples:
+        - valid: "memory_snapshot.mojo"
+        - invalid: "memory-snapshot.mojo"
+
+java:
+  naming_conventions:
+    - use_camelcase: true
+    - class_names_start_with_uppercase: true
+    - avoid_special_chars: true
+    - max_length: 50
+    - examples:
+        - valid: "MemoryAnalyzer.java"
+        - invalid: "memory-analyzer.java"
+
+c:
+  naming_conventions:
+    - use_lowercase: true
+    - use_underscores: true
+    - avoid_special_chars: true
+    - max_length: 50
+    - examples:
+        - valid: "memory_analyzer.c"
+        - invalid: "memory-analyzer.c"
+
+validation:
+  enabled: true
+  error_messages:
+    python_mojo:
+      invalid_char: "Python/Mojo files must use lowercase with underscores, no special characters"
+      too_long: "Python/Mojo file names must be less than 50 characters"
+    java:
+      invalid_case: "Java files must use camelCase for variables and PascalCase for classes"
+      too_long: "Java file names must be less than 50 characters"
+    c:
+      invalid_char: "C files must use lowercase with underscores, no special characters"
+      too_long: "C file names must be less than 50 characters"
