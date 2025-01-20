@@ -1,0 +1,36 @@
+{
+    "recommendations": [
+        // Python Development
+        "ms-python.python",
+        "ms-python.vscode-pylance",
+        "ms-python.black-formatter",
+        "ms-python.pylint",
+        // Jupyter Notebook
+        "ms-toolsai.jupyter",
+        "ms-toolsai.jupyter-renderers",
+        "ms-toolsai.vscode-jupyter-cell-tags",
+        // Mojo Development (placeholder)
+        "modularml.mojo",
+        // C/C++ Development
+        "ms-vscode.cpptools",
+        "ms-vscode.cmake-tools",
+        // General Development
+        "eamodio.gitlens",
+        "streetsidesoftware.code-spell-checker",
+        "usernamehw.errorlens",
+        "visualstudioexptteam.vscodeintellicode",
+        // Markdown and Documentation
+        "yzhang.markdown-all-in-one",
+        "bierner.markdown-preview-github-styles",
+        // Performance and Profiling
+        "ms-vscode.performance-profiler",
+        // Theme and Aesthetics
+        "pkief.material-icon-theme",
+        "github.github-vscode-theme"
+    ],
+    "unwantedRecommendations": [
+        "vscode.csharp",
+        "vscode.typescript",
+        "vscode.javascript"
+    ]
+}

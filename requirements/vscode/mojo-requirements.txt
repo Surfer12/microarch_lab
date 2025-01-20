@@ -1,1 +1,26 @@
- 
+# Mojo Requirements for Microarchitecture Learning Lab
+
+# Mojo Compiler and Standard Libraries
+# Note: Mojo is still in development, so specific version requirements may change
+mojo>=0.1.0
+
+# Performance Benchmarking
+benchmark>=0.1.0
+
+# Numerical Computing
+numpy-mojo>=0.1.0
+
+# Parallel Processing
+parallel-mojo>=0.1.0
+
+# Machine Learning Extensions
+ml-mojo>=0.1.0
+
+# Visualization and Plotting
+mojo-plot>=0.1.0
+
+# Testing and Validation
+mojo-test>=0.1.0
+
+# Profiling and Optimization
+mojo-profile>=0.1.0 
