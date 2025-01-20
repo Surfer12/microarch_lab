@@ -9,49 +9,84 @@ This repository is a comprehensive learning resource for exploring modern progra
 ### Documentation (`/docs`)
 
 #### Language Comparisons
-- `c-vs-mojo-performance-optimization.md`: Detailed performance comparison
-- `language-transition-guide.md`: Guidance for transitioning between languages
+- Detailed performance and language transition guides
+- Comparative analysis of C and Mojo
 
 #### Optimization Techniques
-- `memory-management-strategies.md`: Advanced memory management approaches
-- `advanced-performance-optimization.md`: Performance optimization strategies
-- `cross-platform-development.md`: Cross-platform development considerations
-- `modern-hardware-integration.md`: Hardware integration techniques
+- Advanced memory management strategies
+- Performance optimization techniques
+- Cross-platform development insights
 
 #### Language Guides
-- `c-language-syntax.md`: C language syntax reference
-- `mojo-language-syntax.md`: Mojo language syntax reference
-- `language-best-practices.md`: Best practices and coding guidelines
-- `security-best-practices.md`: Security considerations and recommendations
-
-#### Overview
-- `project-overview.md`: Project introduction and goals
+- Syntax references for C and Mojo
+- Best practices and coding guidelines
+- Security considerations
 
 ### Labs (`/labs`)
 
 #### C Language
-- `src/`: Source code examples
-- `tests/`: Test frameworks and test cases
+- Low-level system programming examples
+- Memory management techniques
+- Performance optimization demonstrations
 
 #### Mojo Examples
-- `performance_demos/`: Performance demonstration code
-- `optimization_techniques/`: Optimization technique implementations
+- Performance demonstration code
+- Optimization technique implementations
 
 ### Resources (`/resources`)
 
-- `interactive_simulators/`: Web-based simulation frameworks
-- `performance_benchmarks/`: Performance benchmark tools and results
+#### Interactive Notebooks (`/resources/interactive_notebooks`)
+- Jupyter notebooks for hands-on learning
+- CPU architecture simulations
+- Interactive system design exploration
+
+#### Interactive Simulators (`/resources/interactive_simulators`)
+- Multi-language architectural simulators
+- Web-based simulation frameworks
+- Performance visualization tools
 
 ## Getting Started
 
+### Prerequisites
+
+- Python 3.8+
+- Mojo compiler
+- Jupyter Notebook or JupyterLab
+- C compiler (GCC or Clang)
+- VSCode (recommended)
+
+### Installation
+
 1. Clone the repository
-2. Explore the documentation
-3. Run examples in the labs
-4. Experiment with the interactive resources
+   ```bash
+   git clone https://github.com/yourusername/microarchitecture-learning-lab.git
+   cd microarchitecture-learning-lab
+   ```
+
+2. Install Python dependencies
+   ```bash
+   pip install -r requirements/vscode/python-requirements.txt
+   ```
+
+3. Set up Mojo environment
+   ```bash
+   # Follow Mojo installation instructions
+   ```
+
+4. Open in VSCode
+   - Install recommended extensions
+   - Open workspace settings
+
+## Exploring the Lab
+
+- Browse documentation in `/docs`
+- Run examples in `/labs`
+- Interact with notebooks in `/resources/interactive_notebooks`
+- Experiment with simulators in `/resources/interactive_simulators`
 
 ## Contributing
 
-Contributions are welcome! Please read the contributing guidelines before submitting pull requests.
+Contributions are welcome! Please read our [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct and the process for submitting pull requests.
 
 ## License
 
