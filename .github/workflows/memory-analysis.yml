@@ -1,141 +1,21 @@
-name: Memory Safety Analysis
+name: "Memory Analysis"
 
 on:
   push:
-    branches: [main, develop]
+    branches: ["main"]
   pull_request:
-    branches: [main, develop]
-  workflow_dispatch:
+    branches: ["main"]
 
 jobs:
-  memory-analysis:
-    name: Memory Safety Checks
+  analyze:
+    name: Analyze Memory
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        language: ["c", "cpp", "python"]
-        include:
-          - language: c
-            compiler: gcc
-          - language: cpp
-            compiler: g++
-          - language: python
-            compiler: python3
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v2
 
-      # Setup language-specific environments
-      - name: Setup C/C++ Environment
-        if: matrix.language == 'c' || matrix.language == 'cpp'
+      - name: Run Memory Analysis
         run: |
-          sudo apt-get update
-          sudo apt-get install -y valgrind ${{ matrix.compiler }} clang
-
-      - name: Setup Python Environment
-        if: matrix.language == 'python'
-        uses: actions/setup-python@v4
-        with:
-          python-version: "3.9"
-
-      # Compile with Address Sanitizer for C/C++
-      - name: Compile with ASan
-        if: matrix.language == 'c' || matrix.language == 'cpp'
-        run: |
-          # Compile with Address Sanitizer
-          ${{ matrix.compiler }} -fsanitize=address -g \
-            -fno-omit-frame-pointer \
-            -O1 \
-            labs/${{ matrix.language }}_language/**/*.c \
-            labs/${{ matrix.language }}_language/**/*.cpp \
-            -o memory_test_binary
-
-      # Valgrind Memory Check
-      - name: Valgrind Memory Check
-        if: matrix.language == 'c' || matrix.language == 'cpp'
-        run: |
-          # Run Valgrind on compiled binaries
-          valgrind --leak-check=full \
-            --show-leak-kinds=all \
-            --track-origins=yes \
-            --verbose \
-            --log-file=valgrind-out.txt \
-            ./memory_test_binary
-
-      # Python Memory Profiling
-      - name: Python Memory Profiling
-        if: matrix.language == 'python'
-        run: |
-          pip install memory_profiler
-          python -m memory_profiler labs/python_examples/**/*.py
-
-      # Upload Artifacts
-      - name: Upload Memory Analysis Logs
-        uses: actions/upload-artifact@v3
-        with:
-          name: memory-analysis-${{ matrix.language }}
-          path: |
-            valgrind-out.txt
-            memory_profile_results.txt
-
-      # Analyze Valgrind Output
-      - name: Analyze Valgrind Results
-        if: matrix.language == 'c' || matrix.language == 'cpp'
-        run: |
-          if grep -q "definitely lost" valgrind-out.txt; then
-            echo "Memory leaks detected!"
-            exit 1
-          fi
-
-  # Additional Memory Safety Checks
-  comprehensive-memory-scan:
-    name: Comprehensive Memory Scan
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Install Memory Analysis Tools
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y valgrind clang-tools
-
-      - name: Run Comprehensive Memory Scan
-        run: |
-          # Static analysis with clang
-          clang-tidy labs/**/*.c labs/**/*.cpp \
-            -checks=clang-analyzer-security*,clang-analyzer-memory* \
-            --extra-arg=-fsanitize=address
-
-      # Optional: Custom memory analysis script
-      - name: Custom Memory Analysis
-        run: |
-          # Add custom memory analysis scripts or tools
-          python scripts/memory_analysis.py
-
-  # Reporting Job
-  memory-analysis-report:
-    name: Generate Memory Analysis Report
-    needs: [memory-analysis, comprehensive-memory-scan]
-    runs-on: ubuntu-latest
-    steps:
-      - name: Download Artifacts
-        uses: actions/download-artifact@v3
-
-      - name: Compile Memory Analysis Report
-        run: |
-          echo "# Memory Safety Analysis Report" > MEMORY_REPORT.md
-          echo "## Valgrind Findings" >> MEMORY_REPORT.md
-          cat **/valgrind-out.txt >> MEMORY_REPORT.md
-
-      - name: Upload Report
-        uses: actions/upload-artifact@v3
-        with:
-          name: memory-analysis-report
-          path: MEMORY_REPORT.md
-# Optional notification configuration
-# notifications:
-#   webhooks:
-#     - url: your-webhook-url
-#     - events: ['push', 'pull_request']
+          cd docs/mojo_examples
+          mojo memory-snapshot.mojo

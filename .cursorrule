@@ -41,3 +41,12 @@ validation:
     c:
       invalid_char: "C files must use lowercase with underscores, no special characters"
       too_long: "C file names must be less than 50 characters"
+
+# Example .cursorrule configuration
+rule "example_rule"
+    when
+        file_type == "python"
+    then
+        # Apply specific rules for Python files
+        enforce_indentation = 4
+end
