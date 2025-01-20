@@ -25,4 +25,4 @@
         exit(1); \
     }
 
-#endif // TEST_FRAMEWORK_H 
+#endif // TEST_FRAMEWORK_H
