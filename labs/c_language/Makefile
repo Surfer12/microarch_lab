@@ -1,10 +1,27 @@
 # Makefile for C Language Microarchitecture Lab
 
-# Compiler
-CC = gcc
+# Add cross-platform support
+ifeq ($(OS),Windows_NT)
+    CC = gcc
+    RM = del /Q
+    MKDIR = mkdir
+    EXE_EXT = .exe
+else
+    CC = gcc
+    RM = rm -rf
+    MKDIR = mkdir -p
+    EXE_EXT =
+endif
+
+# Add platform-specific flags
+ifeq ($(OS),Windows_NT)
+    CFLAGS += -D_WIN32
+else
+    CFLAGS += -D_UNIX
+endif
 
 # Compiler flags
-CFLAGS = -Wall -Wextra -std=c11 -g
+CFLAGS += -Wall -Wextra -std=c11 -g
 OPTIMIZE_FLAGS = -O2
 
 # Directories
@@ -24,7 +41,7 @@ all: $(BUILD_DIR) $(BUILD_DIR)/microarch_lab
 
 # Create build directory
 $(BUILD_DIR):
-	mkdir -p $(BUILD_DIR)
+	$(MKDIR) $(BUILD_DIR)
 
 # Compile main executable
 $(BUILD_DIR)/microarch_lab: $(OBJS)
@@ -41,7 +58,7 @@ test:
 
 # Clean build artifacts
 clean:
-	rm -rf $(BUILD_DIR)
+	$(RM) $(BUILD_DIR)
 	$(MAKE) -C $(TEST_DIR) clean
 
 # Help target
