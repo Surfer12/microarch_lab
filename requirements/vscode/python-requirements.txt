@@ -12,8 +12,8 @@ plotly==5.7.0
 
 # Jupyter Notebook
 jupyter==1.0.0
-notebook==6.4.11
-jupyterlab==3.3.4
+notebook==6.4.12
+jupyterlab==4.3.4
 
 # Performance and Profiling
 psutil==5.9.0
@@ -26,7 +26,7 @@ simpy==4.0.1
 # Type Checking and Linting
 mypy==0.950
 pylint==2.13.9
-black==22.3.0
+black==24.3.0
 
 # Testing
 pytest==7.1.2
@@ -34,7 +34,7 @@ pytest-cov==3.0.0
 
 # Architectural Simulation Dependencies
 networkx==2.8.2
-scikit-learn==1.1.1
+scikit-learn==1.5.0
 
 # Memory Analysis
 guppy3==3.1.2  # Heap analysis
