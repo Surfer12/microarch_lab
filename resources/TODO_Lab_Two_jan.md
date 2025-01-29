@@ -1,5 +1,7 @@
 
-Lab Two :
+Lab Two : Get directions from Lab 2 PDF.
+
+Use 1nanometer for sim graph
 
 Build Carryout: circuit in same schematic as 'sum' circuit.
 
