@@ -48,7 +48,7 @@ Lab hour: Gates continued. Using simulator and building an adder with gates.
 Lab handout: Lab 2: Introduction to LTSpiceDownload Lab 2: Introduction to LTSpice
 
 
-![alt text](<Screenshot 2025-01-29 at 20.05.37.png>)
+![alt text](../labs/lab2/sum_lab2_gate.png)
 
 
 Files for lab: LogicLibrary.zipDownload LogicLibrary.zip
