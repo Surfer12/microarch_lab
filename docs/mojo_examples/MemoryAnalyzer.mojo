@@ -2,7 +2,8 @@ from memory import memset, memcpy
 from sys import sizeof, alignof
 from pathlib import Path
 from time import time
-from .memory-snapshot import MemorySnapshot
+from memory_snapshot import MemorySnapshot
+
 
 struct MemoryAnalyzer:
     var target_directories: List[String]

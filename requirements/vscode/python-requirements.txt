@@ -12,8 +12,7 @@ plotly==5.7.0
 
 # Jupyter Notebook
 jupyter==1.0.0
-notebook==6.4.11
-jupyterlab==3.6.8
+
 
 # Performance and Profiling
 psutil==5.9.0

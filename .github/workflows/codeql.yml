@@ -1,63 +1,27 @@
-name: "CodeQL Security Analysis"
+name: "CodeQL"
 
 on:
   push:
-    branches: ["main", "develop"]
+    branches: ["main"]
   pull_request:
     branches: ["main"]
-  schedule:
-    - cron: "0 0 * * 0" # Weekly scan
-
-permissions:
-  contents: read
-  security-events: write
 
 jobs:
   analyze:
-    name: Security Code Analysis
+    name: Analyze
     runs-on: ubuntu-latest
-    timeout-minutes: 360
-
-    strategy:
-      fail-fast: false
-      matrix:
-        language: ["python", "cpp", "javascript"]
-        # Optional: Add 'mojo' when supported by CodeQL
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
+        uses: actions/checkout@v2
 
       - name: Initialize CodeQL
-        uses: github/codeql-action/init@v3
+        uses: github/codeql-action/init@v1
         with:
-          languages: ${{ matrix.language }}
-          queries: security-and-quality
+          languages: "python"
 
-      # Specific setup for different languages
-      - name: Setup Python
-        if: matrix.language == 'python'
-        uses: actions/setup-python@v4
-        with:
-          python-version: "3.9"
-
-      - name: Setup C++
-        if: matrix.language == 'cpp'
-        uses: actions/setup-cpp@v1
-
-      # Optional: Add Mojo setup when available
-
-      # Autobuild for each language
-      - name: Autobuild
-        uses: github/codeql-action/autobuild@v3
-
-      # Perform CodeQL Analysis
       - name: Perform CodeQL Analysis
-        uses: github/codeql-action/analyze@v3
-        with:
-          category: "/language:${{matrix.language}}"
+        uses: github/codeql-action/analyze@v1
 
   dependency-review:
     name: Dependency Review

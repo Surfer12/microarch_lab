@@ -2,8 +2,7 @@
 
 # Jupyter Core
 jupyter==1.0.0
-notebook==6.4.11
-jupyterlab==3.6.8
+
 
 # Interactive Widgets
 ipywidgets==7.7.0
@@ -20,8 +19,7 @@ scipy==1.8.1
 
 # Machine Learning and Data Science
 scikit-learn==1.5.0
-tensorflow==2.12.1
-torch==2.2.0
+
 
 # Plotting and Visualization
 matplotlib==3.5.2
