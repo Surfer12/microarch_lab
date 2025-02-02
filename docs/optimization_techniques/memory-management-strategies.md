@@ -1,21 +1,25 @@
 ## Memory Management Best Practices
 
 ### 1. Allocation Strategies
+
 - [ ] Use memory pools for fixed-size objects
 - [ ] Implement custom allocators for specific patterns
 - [ ] Consider slab allocation for frequent small allocations
 
 ### 2. Debugging Techniques
+
 - [ ] Use Address Sanitizer for memory errors
 - [ ] Implement boundary checking
 - [ ] Use canary values to detect buffer overflows
 
 ### 3. Optimization Patterns
+
 - [ ] Minimize dynamic allocations
 - [ ] Use stack allocation when possible
 - [ ] Implement object reuse patterns
 
 ### 4. Safety Measures
+
 - [ ] Always initialize allocated memory
 - [ ] Use RAII-like patterns in C
 - [ ] Implement comprehensive error handling
@@ -23,6 +27,7 @@
 # Memory Management in Mojo
 
 ## Hardware-Level Memory Simulation
+
 ```mojo
 from memory import memset, memcpy
 from sys import sizeof
@@ -54,6 +59,7 @@ struct HardwareSimulator:
 ```
 
 ## CPU Architecture Simulation
+
 ```mojo
 from max.tensor import Tensor, TensorSpec, TensorShape
 from math import log2
@@ -78,6 +84,7 @@ struct CPUArchitectureSimulator:
 ```
 
 ## Best Practices
+
 - [ ] Use explicit memory allocation/deallocation
 - [ ] Implement proper bounds checking
 - [ ] Use memory alignment for performance
