@@ -1,6 +1,7 @@
 # Practical C Programming Examples and Data Structures
 
 ## Data Structure Implementation Flow
+
 ```mermaid
 graph TD
     A[Data Structure Design] --> B{Choose Type}
@@ -15,6 +16,7 @@ graph TD
 ```
 
 ## Dynamic Array Implementation
+
 ```c
 typedef struct {
     int* data;
@@ -25,13 +27,13 @@ typedef struct {
 DynamicArray* create_array(size_t initial_capacity) {
     DynamicArray* arr = malloc(sizeof(DynamicArray));
     if (!arr) return NULL;
-    
+
     arr->data = malloc(initial_capacity * sizeof(int));
     if (!arr->data) {
         free(arr);
         return NULL;
     }
-    
+
     arr->size = 0;
     arr->capacity = initial_capacity;
     return arr;
@@ -49,17 +51,18 @@ bool array_push(DynamicArray* arr, int value) {
         size_t new_capacity = arr->capacity * 2;
         int* new_data = realloc(arr->data, new_capacity * sizeof(int));
         if (!new_data) return false;
-        
+
         arr->data = new_data;
         arr->capacity = new_capacity;
     }
-    
+
     arr->data[arr->size++] = value;
     return true;
 }
 ```
 
 ## Binary Search Tree Implementation
+
 ```c
 typedef struct Node {
     int data;
@@ -79,12 +82,12 @@ Node* create_node(int value) {
 
 Node* insert(Node* root, int value) {
     if (!root) return create_node(value);
-    
+
     if (value < root->data)
         root->left = insert(root->left, value);
     else if (value > root->data)
         root->right = insert(root->right, value);
-    
+
     return root;
 }
 
@@ -98,6 +101,7 @@ void destroy_tree(Node* root) {
 ```
 
 ## Event System Implementation
+
 ```mermaid
 graph LR
     A[Event Source] --> B[Event Queue]
@@ -119,13 +123,13 @@ typedef struct {
 EventSystem* create_event_system(size_t initial_capacity) {
     EventSystem* sys = malloc(sizeof(EventSystem));
     if (!sys) return NULL;
-    
+
     sys->handlers = malloc(initial_capacity * sizeof(EventHandler));
     if (!sys->handlers) {
         free(sys);
         return NULL;
     }
-    
+
     sys->count = 0;
     sys->capacity = initial_capacity;
     return sys;
@@ -134,20 +138,21 @@ EventSystem* create_event_system(size_t initial_capacity) {
 bool register_handler(EventSystem* sys, EventHandler handler) {
     if (sys->count == sys->capacity) {
         size_t new_capacity = sys->capacity * 2;
-        EventHandler* new_handlers = realloc(sys->handlers, 
+        EventHandler* new_handlers = realloc(sys->handlers,
                                            new_capacity * sizeof(EventHandler));
         if (!new_handlers) return false;
-        
+
         sys->handlers = new_handlers;
         sys->capacity = new_capacity;
     }
-    
+
     sys->handlers[sys->count++] = handler;
     return true;
 }
 ```
 
 ## Memory Pool Implementation
+
 ```mermaid
 graph TD
     A[Memory Pool] --> B[Fixed Size Blocks]
@@ -174,14 +179,14 @@ typedef struct {
 MemoryPool* create_pool(size_t block_size, size_t initial_blocks) {
     MemoryPool* pool = malloc(sizeof(MemoryPool));
     if (!pool) return NULL;
-    
+
     size_t total_block_size = sizeof(Block) + block_size;
     pool->first_block = malloc(total_block_size * initial_blocks);
     if (!pool->first_block) {
         free(pool);
         return NULL;
     }
-    
+
     // Initialize blocks
     Block* current = pool->first_block;
     for (size_t i = 0; i < initial_blocks - 1; i++) {
@@ -191,7 +196,7 @@ MemoryPool* create_pool(size_t block_size, size_t initial_blocks) {
     }
     current->is_free = true;
     current->next = NULL;
-    
+
     pool->block_size = block_size;
     pool->pool_size = initial_blocks;
     return pool;
@@ -199,6 +204,7 @@ MemoryPool* create_pool(size_t block_size, size_t initial_blocks) {
 ```
 
 ## Practice Projects
+
 1. Implement a Thread-Safe Queue
 2. Create a Simple Memory Allocator
 3. Build a File System Cache
@@ -206,6 +212,7 @@ MemoryPool* create_pool(size_t block_size, size_t initial_blocks) {
 5. Design a Task Scheduler
 
 ## Performance Considerations
+
 ```mermaid
 graph TD
     A[Performance Optimization] --> B[Memory Access]
@@ -220,8 +227,9 @@ graph TD
 ```
 
 ## Testing Strategies
+
 1. Unit Testing
 2. Memory Testing
 3. Performance Testing
 4. Edge Case Testing
-5. Integration Testing 
+5. Integration Testing

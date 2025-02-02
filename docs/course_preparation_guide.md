@@ -1,9 +1,11 @@
 # CIS 240: Computer Architecture and Low-Level Programming Preparation Guide
 
 ## Course Overview
+
 This course explores the intricate relationship between software and hardware, focusing on how programs interact with computer systems at a fundamental level.
 
 ## Prerequisites and Recommended Background
+
 - Basic programming experience (preferably in C)
 - Understanding of basic computer science concepts
 - Comfort with logical and computational thinking
@@ -11,17 +13,19 @@ This course explores the intricate relationship between software and hardware, f
 ## Language Transition Guide
 
 ### Moving from Java to C
+
 - **Key Differences**
   - Manual memory management vs garbage collection
   - Pointers and direct memory access
   - No built-in object orientation
   - Platform-dependent behavior
-  
+
 - **Common Pitfalls**
+
   ```c
   // Java: Objects are automatically managed
   String str = new String("Hello");
-  
+
   // C: Manual memory management required
   char* str = malloc(6 * sizeof(char));
   strcpy(str, "Hello");
@@ -34,6 +38,7 @@ This course explores the intricate relationship between software and hardware, f
   - Pointer arithmetic and array relationships
   - Manual string handling
   - Struct usage instead of classes
+
   ```c
   // Instead of Java classes, use structs
   struct Person {
@@ -44,6 +49,7 @@ This course explores the intricate relationship between software and hardware, f
   ```
 
 ### Transitioning from Mojo to C
+
 - **Key Differences**
   - Lower-level memory control
   - No built-in SIMD or vectorization
@@ -51,6 +57,7 @@ This course explores the intricate relationship between software and hardware, f
   - Manual optimization required
 
 - **Memory Management Comparison**
+
   ```c
   // Mojo: Structured memory management
   fn process_data[T: DType](data: Buffer[T]):
@@ -71,6 +78,7 @@ This course explores the intricate relationship between software and hardware, f
   - Understanding cache alignment
   - Manual vectorization techniques
   - Explicit memory layout control
+
   ```c
   // Optimize struct layout for cache
   struct OptimizedData {
@@ -82,7 +90,9 @@ This course explores the intricate relationship between software and hardware, f
   ```
 
 ### Common C Programming Gotchas
+
 - **Memory Leaks**
+
   ```c
   // WRONG: Memory leak
   char* get_string() {
@@ -100,6 +110,7 @@ This course explores the intricate relationship between software and hardware, f
   ```
 
 - **Buffer Overflows**
+
   ```c
   // WRONG: Potential buffer overflow
   char buffer[5];
@@ -112,6 +123,7 @@ This course explores the intricate relationship between software and hardware, f
   ```
 
 - **Pointer Arithmetic**
+
   ```c
   // WRONG: Undefined behavior
   int arr[5] = {1, 2, 3, 4, 5};
@@ -128,6 +140,7 @@ This course explores the intricate relationship between software and hardware, f
 ### Data Type Conversions and Transformations
 
 #### 1. String and Number Conversions
+
 ```c
 // String to Integer conversion
 char str[] = "12345";
@@ -148,6 +161,7 @@ double d = strtod(float_str, NULL); // String to double
 ```
 
 #### 2. Base Conversions
+
 ```c
 // Hexadecimal string to integer
 char hex[] = "1A";
@@ -170,6 +184,7 @@ printf("Octal: %o\n", val);       // Base 8
 ```
 
 #### 3. Data Structure Transformations
+
 ```c
 // Array to Linked List conversion
 typedef struct Node {
@@ -179,13 +194,13 @@ typedef struct Node {
 
 Node* array_to_list(int arr[], int size) {
     if (size == 0) return NULL;
-    
+
     Node* head = malloc(sizeof(Node));
     if (!head) return NULL;
-    
+
     head->data = arr[0];
     head->next = NULL;
-    
+
     Node* current = head;
     for (int i = 1; i < size; i++) {
         Node* new_node = malloc(sizeof(Node));
@@ -215,43 +230,44 @@ int* list_to_array(Node* head, int* size) {
         count++;
         current = current->next;
     }
-    
+
     // Allocate array
     int* arr = malloc(count * sizeof(int));
     if (!arr) return NULL;
-    
+
     // Copy data
     current = head;
     for (int i = 0; i < count; i++) {
         arr[i] = current->data;
         current = current->next;
     }
-    
+
     *size = count;
     return arr;
 }
 ```
 
 #### 4. File Format Conversions
+
 ```c
 // Text to Binary file conversion
 int text_to_binary(const char* input_file, const char* output_file) {
     FILE *in, *out;
     char ch;
-    
+
     in = fopen(input_file, "r");
     if (!in) return -1;
-    
+
     out = fopen(output_file, "wb");
     if (!out) {
         fclose(in);
         return -1;
     }
-    
+
     while ((ch = fgetc(in)) != EOF) {
         fwrite(&ch, sizeof(char), 1, out);
     }
-    
+
     fclose(in);
     fclose(out);
     return 0;
@@ -261,20 +277,20 @@ int text_to_binary(const char* input_file, const char* output_file) {
 int binary_to_text(const char* input_file, const char* output_file) {
     FILE *in, *out;
     char ch;
-    
+
     in = fopen(input_file, "rb");
     if (!in) return -1;
-    
+
     out = fopen(output_file, "w");
     if (!out) {
         fclose(in);
         return -1;
     }
-    
+
     while (fread(&ch, sizeof(char), 1, in) == 1) {
         fputc(ch, out);
     }
-    
+
     fclose(in);
     fclose(out);
     return 0;
@@ -282,12 +298,13 @@ int binary_to_text(const char* input_file, const char* output_file) {
 ```
 
 #### 5. Bit Manipulation and Type Punning
+
 ```c
 // Float to bits visualization
 void print_float_bits(float f) {
     uint32_t bits;
     memcpy(&bits, &f, sizeof(float));
-    
+
     for (int i = 31; i >= 0; i--) {
         printf("%d", (bits >> i) & 1);
         if (i == 31 || i == 23) printf(" ");
@@ -312,6 +329,7 @@ void analyze_float(float f) {
 ### Conversion Pitfalls and Best Practices
 
 #### 1. Type Conversion Safety
+
 ```c
 // WRONG: Potential data loss
 int large_num = 1000000;
@@ -337,6 +355,7 @@ if (u > INT_MAX) {
 ```
 
 #### 2. String Conversion Safety
+
 ```c
 // WRONG: Buffer overflow risk
 char small_buffer[5];
@@ -365,6 +384,7 @@ if (errno != 0 || endptr == str || *endptr != '\0') {
 ```
 
 #### 3. Memory Management in Conversions
+
 ```c
 // WRONG: Memory leak in error case
 char* convert_to_uppercase(const char* input) {
@@ -381,7 +401,7 @@ char* convert_to_uppercase(const char* input) {
 char* convert_to_uppercase(const char* input) {
     char* result = malloc(strlen(input) + 1);
     if (!result) return NULL;
-    
+
     for (int i = 0; input[i]; i++) {
         result[i] = toupper(input[i]);
         if (some_error_condition) {
@@ -395,6 +415,7 @@ char* convert_to_uppercase(const char* input) {
 ```
 
 #### 4. Platform-Dependent Conversions
+
 ```c
 // WRONG: Assumes sizeof(int) == 4
 uint32_t convert_to_network_order(int value) {
@@ -419,6 +440,7 @@ float bits_to_float(uint32_t bits) {
 ```
 
 #### 5. Best Practices Summary
+
 - Always check for conversion errors
 - Use appropriate buffer sizes
 - Clean up resources on error paths
@@ -432,6 +454,7 @@ float bits_to_float(uint32_t bits) {
 ### Practical C Examples
 
 - **Dynamic Array Implementation**
+
   ```c
   typedef struct {
       int* data;
@@ -442,13 +465,13 @@ float bits_to_float(uint32_t bits) {
   DynamicArray* create_array(size_t initial_capacity) {
       DynamicArray* arr = malloc(sizeof(DynamicArray));
       if (!arr) return NULL;
-      
+
       arr->data = malloc(initial_capacity * sizeof(int));
       if (!arr->data) {
           free(arr);
           return NULL;
       }
-      
+
       arr->size = 0;
       arr->capacity = initial_capacity;
       return arr;
@@ -463,6 +486,7 @@ float bits_to_float(uint32_t bits) {
   ```
 
 - **Function Pointers for Callbacks**
+
   ```c
   typedef void (*EventHandler)(const char* event);
 
@@ -480,9 +504,11 @@ float bits_to_float(uint32_t bits) {
   ```
 
 ### Debugging Tips
+
 - Use tools like Valgrind for memory leak detection
 - GDB for step-by-step debugging
 - Address Sanitizer for memory error detection
+
   ```bash
   # Compile with sanitizer
   gcc -fsanitize=address -g program.c
@@ -491,9 +517,11 @@ float bits_to_float(uint32_t bits) {
 ### Recommended Practice Exercises
 
 #### 1. Memory Management Exercises
+
 - Implement a simple string class with proper memory management
 - Create a generic linked list implementation
 - Build a memory pool allocator
+
 ```c
 // Example string class implementation
 typedef struct {
@@ -504,14 +532,14 @@ typedef struct {
 String* string_create(const char* initial) {
     String* str = malloc(sizeof(String));
     if (!str) return NULL;
-    
+
     str->length = strlen(initial);
     str->data = malloc(str->length + 1);
     if (!str->data) {
         free(str);
         return NULL;
     }
-    
+
     strcpy(str->data, initial);
     return str;
 }
@@ -525,9 +553,11 @@ void string_destroy(String* str) {
 ```
 
 #### 2. Data Structure Conversion
+
 - Convert Java ArrayList to C dynamic array
 - Implement a binary search tree without classes
 - Create a hash table using C structs
+
 ```c
 // Example hash table entry
 typedef struct Entry {
@@ -544,9 +574,11 @@ typedef struct {
 ```
 
 #### 3. Algorithm Implementation
+
 - Implement sorting algorithms using pointers
 - Create a simple memory allocator
 - Build a basic garbage collector
+
 ```c
 // Example quicksort implementation
 void swap(int* a, int* b) {
@@ -558,7 +590,7 @@ void swap(int* a, int* b) {
 int partition(int arr[], int low, int high) {
     int pivot = arr[high];
     int i = (low - 1);
-    
+
     for (int j = low; j <= high - 1; j++) {
         if (arr[j] < pivot) {
             i++;
@@ -571,9 +603,11 @@ int partition(int arr[], int low, int high) {
 ```
 
 #### 4. Low-Level Operations
+
 - Bit manipulation exercises
 - Implement basic compression algorithms
 - Create a simple serialization format
+
 ```c
 // Example bit manipulation
 uint32_t set_bit(uint32_t num, int pos) {
@@ -590,9 +624,11 @@ uint32_t toggle_bit(uint32_t num, int pos) {
 ```
 
 #### 5. System Integration
+
 - Create a simple file I/O library
 - Implement basic network operations
 - Build a command-line argument parser
+
 ```c
 // Example command line parser
 typedef struct {
@@ -617,6 +653,7 @@ Options parse_args(int argc, char* argv[]) {
 ```
 
 ## Key Learning Objectives
+
 1. Understand digital hardware design
 2. Learn how high-level programs translate to machine instructions
 3. Explore computer architecture principles
@@ -625,6 +662,7 @@ Options parse_args(int argc, char* argv[]) {
 ## Technical Preparation
 
 ### 1. Programming Skills
+
 - **C Language Fundamentals**
   - Pointers and memory management
   - Bit-level operations
@@ -632,6 +670,7 @@ Options parse_args(int argc, char* argv[]) {
   - Compilation process
 
 - **Recommended C Practice Areas**
+
   ```c
   // Example areas to practice
   int *ptr = malloc(sizeof(int) * 10);  // Dynamic memory allocation
@@ -643,12 +682,14 @@ Options parse_args(int argc, char* argv[]) {
   ```
 
 ### 2. Hardware Concepts
+
 - Binary and hexadecimal number systems
 - Boolean logic
 - Basic digital circuit understanding
 - CPU instruction set basics
 
 ### 3. Development Environment Setup
+
 - **Recommended Tools**
   - GCC or Clang compiler
   - Make build system
@@ -656,10 +697,11 @@ Options parse_args(int argc, char* argv[]) {
   - Text editor or IDE (VSCode, Vim, etc.)
 
 ### 4. Recommended Learning Resources
+
 - **Books**
   - "Computer Systems: A Programmer's Perspective"
   - "Digital Design and Computer Architecture"
-  
+
 - **Online Resources**
   - MIT OpenCourseWare: Computer Architecture lectures
   - Coursera: Nand to Tetris
@@ -668,25 +710,30 @@ Options parse_args(int argc, char* argv[]) {
 ## Practical Preparation Checklist
 
 ### Technical Skills
+
 - [ ] Review C programming fundamentals
 - [ ] Practice memory management
 - [ ] Understand compilation process
 - [ ] Learn basic assembly language concepts
 
 ### Hardware Understanding
+
 - [ ] Study basic digital logic
 - [ ] Understand how instructions are executed
 - [ ] Learn about CPU registers and memory hierarchy
 
 ## Lab and Project Expectations
+
 - Hands-on hardware simulation
 - Low-level programming assignments
 - Potential FPGA or simulation-based projects
 
 ## Instructor's Perspective
+
 Drawing from Tina Smilkstein's background in digital systems and medical technology, expect a course that bridges theoretical concepts with practical applications.
 
 ## Additional Tips
+
 1. Start early with C programming practice
 2. Build small projects to reinforce concepts
 3. Don't be afraid to experiment and make mistakes
@@ -694,9 +741,11 @@ Drawing from Tina Smilkstein's background in digital systems and medical technol
 5. Ask questions and seek clarification
 
 ## Sample Preparation Project
+
 Try implementing a simple memory allocator or simulate a basic CPU instruction decoder to get hands-on experience.
 
 ## Contact and Support
+
 - Instructor Office Hours: [To be announced]
 - Course Communication Platform: [To be specified]
 
@@ -705,6 +754,7 @@ Try implementing a simple memory allocator or simulate a basic CPU instruction d
 ## Advanced Topics and Applications
 
 ### Integrated Circuits (ICs)
+
 - **Fundamentals**
   - Overview of integrated circuits and their evolution
   - Systems-on-chip (SoC) architecture
@@ -721,6 +771,7 @@ Try implementing a simple memory allocator or simulate a basic CPU instruction d
   - Power optimization for battery-operated devices
 
 ### Medical Device Technology
+
 - **Design Considerations**
   - Regulatory compliance (ISO 13485, FDA)
   - Biocompatibility and reliability
@@ -732,6 +783,7 @@ Try implementing a simple memory allocator or simulate a basic CPU instruction d
   - Power management solutions
 
 ### Interactive Learning Resources
+
 - **Visual Aids and Simulations**
   - Circuit design simulations
   - Hardware interaction demonstrations
@@ -748,6 +800,7 @@ Try implementing a simple memory allocator or simulate a basic CPU instruction d
   - Continuous feedback mechanisms
 
 ## Industry Connection
+
 - Guest lectures from medical device professionals
 - Mentorship opportunities
-- Career pathways in electronics and medical devices 
+- Career pathways in electronics and medical devices

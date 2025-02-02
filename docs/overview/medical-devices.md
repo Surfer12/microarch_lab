@@ -1,24 +1,25 @@
 # Medical Device Integration
 
 ## System Architecture Overview
+
 ```mermaid
 graph TD
     A[Medical Device] --> B[Hardware Layer]
     B --> C[Firmware Layer]
     C --> D[Application Layer]
-    
+
     B --> E[Sensors]
     B --> F[Actuators]
     B --> G[Power Management]
-    
+
     C --> H[Safety Systems]
     C --> I[Data Processing]
     C --> J[Communication]
-    
+
     D --> K[User Interface]
     D --> L[Data Storage]
     D --> M[Diagnostics]
-    
+
     style A fill:#f9f,stroke:#333
     style H fill:#f99,stroke:#333
     style I fill:#9f9,stroke:#333
@@ -26,6 +27,7 @@ graph TD
 ```
 
 ## Safety-Critical Programming
+
 ```c
 // Watchdog timer implementation
 typedef struct {
@@ -37,10 +39,10 @@ typedef struct {
 
 void init_watchdog(uint32_t timeout_ms) {
     WatchdogTimer* wdt = (WatchdogTimer*)WDT_BASE_ADDRESS;
-    
+
     // Configure timeout
     wdt->timeout = (CLOCK_FREQUENCY / 1000) * timeout_ms;
-    
+
     // Enable with reset capability
     wdt->control = WDT_ENABLE | WDT_RESET_ENABLE;
 }
@@ -52,6 +54,7 @@ void pet_watchdog(void) {
 ```
 
 ## Sensor Data Processing
+
 ```mermaid
 graph LR
     A[Sensor] -->|Raw Data| B[ADC]
@@ -73,7 +76,7 @@ float moving_average_filter(CircularBuffer* buf, float new_sample) {
     // Add new sample
     buf->buffer[buf->index] = new_sample;
     buf->index = (buf->index + 1) % buf->size;
-    
+
     // Calculate average
     float sum = 0.0f;
     for (size_t i = 0; i < buf->size; i++) {
@@ -84,6 +87,7 @@ float moving_average_filter(CircularBuffer* buf, float new_sample) {
 ```
 
 ## Medical Device Communication
+
 ```mermaid
 graph TD
     A[Device] --> B{Communication Type}
@@ -107,13 +111,13 @@ bool send_secure_data(SecurityContext* ctx, const uint8_t* data, size_t len) {
     // Encrypt data
     uint8_t* encrypted = malloc(len + ENCRYPTION_OVERHEAD);
     if (!encrypted) return false;
-    
+
     bool success = encrypt_data(ctx, data, len, encrypted);
     if (!success) {
         free(encrypted);
         return false;
     }
-    
+
     // Send encrypted data
     success = send_data(encrypted, len + ENCRYPTION_OVERHEAD);
     free(encrypted);
@@ -122,6 +126,7 @@ bool send_secure_data(SecurityContext* ctx, const uint8_t* data, size_t len) {
 ```
 
 ## Power Management
+
 ```mermaid
 graph TD
     A[Power Source] --> B{Power State}
@@ -134,7 +139,9 @@ graph TD
 ```
 
 ## Regulatory Compliance
+
 ### FDA Requirements
+
 1. Safety Controls
 2. Risk Management
 3. Documentation
@@ -142,6 +149,7 @@ graph TD
 5. Cybersecurity
 
 ### Safety Features Implementation
+
 ```c
 // Safety check example
 typedef struct {
@@ -159,16 +167,17 @@ bool check_value(SafetyCheck* check, float value) {
         enter_safe_state();
         return false;
     }
-    
+
     if (value < check->min_value || value > check->max_value) {
         check->alert_handler("Warning: Value out of normal range");
     }
-    
+
     return true;
 }
 ```
 
 ## Testing and Validation
+
 1. Unit Testing
 2. Integration Testing
 3. System Testing
@@ -177,6 +186,7 @@ bool check_value(SafetyCheck* check, float value) {
 6. Environmental Testing
 
 ## Documentation Requirements
+
 1. Design Documentation
 2. Risk Analysis
 3. Test Reports
@@ -185,6 +195,7 @@ bool check_value(SafetyCheck* check, float value) {
 6. Regulatory Submissions
 
 ## Best Practices
+
 1. Implement redundancy
 2. Use watchdog timers
 3. Validate all inputs
@@ -194,4 +205,4 @@ bool check_value(SafetyCheck* check, float value) {
 7. Regular self-tests
 8. Secure communication
 9. Power management
-10. Data integrity checks 
+10. Data integrity checks

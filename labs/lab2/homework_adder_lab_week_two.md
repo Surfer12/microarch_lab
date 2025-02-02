@@ -11,8 +11,8 @@ Please include the following in your lab report:
 
 ## Schematics and Diagrams
 
-• Multi-Bit Adder Wiring Diagram: [View Diagram](../docs/diagrams/wiring/multi_bit_adder.png)
-• Memory Hierarchy Diagram: [View Diagram](../docs/diagrams/hardware/memory_hierarchy.md)
+• Multi-Bit Adder Wiring Diagram: [View Diagram](../../docs/diagrams/wiring/multi_bit_adder.png)
+• Memory Hierarchy Diagram: [View Diagram](../../docs/diagrams/hardware/memory_hierarchy.md)
 
 ---
 
@@ -20,7 +20,8 @@ Please include the following in your lab report:
 
 • Overview: This lab report outlines the design, simulation, and evaluation of a multi-bit adder.
 • Key Elements:
-  - Block Schematics: Diagrams of the adder design.
-  - Simulation Screenshots: Visual outputs from simulations.
-  - Performance Metrics: Data on timing and power consumption.
-  - Lessons Learned: Reflections and insights from the lab.
+
+- Block Schematics: Diagrams of the adder design.
+- Simulation Screenshots: Visual outputs from simulations.
+- Performance Metrics: Data on timing and power consumption.
+- Lessons Learned: Reflections and insights from the lab.
