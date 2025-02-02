@@ -1,7 +1,7 @@
 {
-  "name": "cursor-mcp-server",
-  "version": "0.1.0",
-  "description": "MCP Server for Cursor IDE Integration",
+  "name": "cursor-mcp-llm-server",
+  "version": "0.2.0",
+  "description": "Multi-LLM MCP Server for Cursor IDE Integration",
   "type": "module",
   "main": "custom-server.js",
   "scripts": {
@@ -9,9 +9,14 @@
     "dev": "node --watch custom-server.js"
   },
   "dependencies": {
-    "@modelcontextprotocol/sdk": "latest"
+    "@anthropic-ai/sdk": "^0.25.0",
+    "@google/generative-ai": "^1.2.0",
+    "@modelcontextprotocol/sdk": "latest",
+    "openai": "^4.29.2",
+    "openai-streams": "^0.5.0",
+    "zod": "^3.22.4"
   },
-  "keywords": ["mcp", "cursor", "ide", "integration"],
+  "keywords": ["mcp", "cursor", "llm", "ai", "code-generation"],
   "author": "",
   "license": "MIT"
 }
