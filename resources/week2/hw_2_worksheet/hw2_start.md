@@ -1,5 +1,6 @@
 CIS 240: MICROCOMPUTER ARCHITECTURE & PROGRAMMING
 HW2: 2’s complement and building with gates
+
 1. 2’s complement
 Fill in this table. Do row by row like we did in class. All answers need to be
 8-bits.
@@ -13,7 +14,7 @@ Row # Base-10 Positive binary Hexadecimal 2’s complement
 representations and test yourself. Be careful with the 2’s complement
 calculators. Some of them flip any number you put into the calculator.
 Look for one that’s decimal to 2’s complement like:
-https://www.exploringbinary.com/twos-complement-converter/
+<https://www.exploringbinary.com/twos-complement-converter/>
 3. SOP (sum of product) from truth table. Find the logic for the digital circuit
 described by the following truth tables.
 a.

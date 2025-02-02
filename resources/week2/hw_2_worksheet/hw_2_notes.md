@@ -14,6 +14,7 @@ You have five rows of data to fill out; each row provides a partial specificatio
 Below is one consistent way to fill in each row.
 
 > **Important**: 2’s complement for a *negative* decimal \(n\) in 8 bits is computed by:
+>
 > 1. Convert \(|n|\) to binary (8 bits).
 > 2. Invert (flip) all bits.
 > 3. Add 1.
@@ -21,6 +22,7 @@ Below is one consistent way to fill in each row.
 For a *positive* decimal, the “2’s complement” column is simply the same as the “positive binary” (since its sign bit = 0).
 
 ### Row 1
+
 - **Given**: Base‐10 = \(-12\)
 
 | **Base‐10** | **Positive Binary** | **Hex** | **2’s Complement** |
@@ -28,12 +30,14 @@ For a *positive* decimal, the “2’s complement” column is simply the same a
 | -12         | 00001100           | 0x0C    | 11110100           |
 
 Explanation:
+
 - \(|-12| = 12 \ \rightarrow\) `00001100` in binary (8 bits)
 - Invert `00001100` → `11110011`, add `1` → `11110100`
 
 ---
 
 ### Row 2
+
 - **Given**: Positive Binary = `00010101`
   (leading `0` → positive number)
 
@@ -42,6 +46,7 @@ Explanation:
 | 21          | 00010101           | 0x15    | 00010101           |
 
 Explanation:
+
 - `00010101` in decimal is \(16 + 4 + 1 = 21\).
 - Hex for `00010101` is `0x15`.
 - Because it is positive, its 2’s complement is identical to the positive binary.
@@ -49,6 +54,7 @@ Explanation:
 ---
 
 ### Row 3
+
 - **Given**: Hex = `0x84`
   Interpreted in 8‐bit 2’s complement as a *negative* number because the most significant bit (1) is set.
 
@@ -57,6 +63,7 @@ Explanation:
 | -124        | 01111100           | 0x84    | 10000100           |
 
 Explanation:
+
 - `0x84` = `10000100` in binary.
 - To find decimal value if signed:
   - 2’s complement of `10000100` → invert = `01111011` → add `1` = `01111100` (decimal 124).
@@ -67,6 +74,7 @@ Explanation:
 ---
 
 ### Row 4
+
 - **Given**: `11110001` (presumably the 2’s complement form)
 
 | **Base‐10** | **Positive Binary** | **Hex** | **2’s Complement** |
@@ -74,6 +82,7 @@ Explanation:
 | -15         | 00001111           | 0x0F    | 11110001           |
 
 Explanation:
+
 - Interpreting `11110001` as signed 8 bits:
   - Invert = `00001110` (14 decimal) → add `1` = `00001111` (15 decimal).
   - So it represents \(-15\).
@@ -81,6 +90,7 @@ Explanation:
 ---
 
 ### Row 5
+
 - **Given**: `00001001` (leading `0` → positive number)
 
 | **Base‐10** | **Positive Binary** | **Hex** | **2’s Complement** |
@@ -88,6 +98,7 @@ Explanation:
 | 9           | 00001001           | 0x09    | 00001001           |
 
 Explanation:
+
 - `00001001` is decimal 9.
 - Hex = `0x09`.
 - Positive → 2’s complement is the same bits.
@@ -134,6 +145,7 @@ Observe that `Out = 1` whenever \(B=1\).
 | 1 | 1 | 1 | 1   |
 
 The output is 1 for minterms:
+
 - \(A=0,\,B=1,\,C=1\) → \(\overline{A}BC\)
 - \(A=1,\,B=1,\,C=0\) → \(AB\overline{C}\)
 - \(A=1,\,B=1,\,C=1\) → \(ABC\)
@@ -155,9 +167,11 @@ Sometimes factored:
 ### (3c/d) 3‐Bit Thermometer Code → Binary
 
 **Thermometer Code** (3 bits) counts:
+
 ```
 000 → 001 → 011 → 111
 ```
+
 Interpreting that as 0, 1, 2, 3 in decimal (then presumably wraps around).
 
 - `000₂` → 0 decimal → output `00₂`
@@ -204,6 +218,7 @@ You use K‐Maps on each of the truth tables given:
 - **K‐Map Minimization**: Group as many adjacent 1‐cells (and/or don’t cares) as possible to find the minimal SOP form.
 
 That should guide you through all parts of the assignment:
+
 1. Completing the 2’s complement table,
 2. Verifying your logic expressions in standard SOP form,
 3. Converting thermometer code to binary,
