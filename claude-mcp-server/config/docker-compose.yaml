@@ -1,0 +1,6 @@
+services:
+  custom-mcp:
+    build:
+      context: ./custom-mcp
+    ports:
+      - "8080:8080"

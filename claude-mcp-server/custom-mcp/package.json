@@ -1,0 +1,17 @@
+{
+"name": "custom-mcp-server",
+"version": "1.0.0",
+"description": "Custom MCP Server Application",
+"main": "custom-server.js",
+"scripts": {
+    "start": "node custom-server.js"
+},
+"dependencies": {
+    "express": "^4.17.1",
+    "@modelcontextprotocol/sdk": "latest"
+},
+"keywords": ["mcp", "server"],
+"author": "",
+"license": "ISC"
+}
+
