@@ -2,6 +2,7 @@
        WORKDIR /app
        COPY package*.json ./
        RUN npm install @modelcontextprotocol/sdk
+       RUN npm install ws
        RUN npm install
        COPY . .
        EXPOSE 3000
