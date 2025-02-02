@@ -68,246 +68,331 @@ This design meets the lab’s requirements by cascading the basic full adder cir
 
 Below are nine separate MermaidJS diagrams—one for each section of the 4‑bit ripple carry adder design process. You can paste each code snippet into a Mermaid-enabled environment (or an online Mermaid live editor) to view the corresponding visualization.
 
-1. Block Diagram of the 4-Bit Ripple Carry Adder
+Below are nine separate LaTeX/TikZ code snippets that correspond to the MermaidJS diagrams you provided. You can compile each as a standalone document (using, for example, the “standalone” document class) or integrate them into your LaTeX document. Adjust node distances or styles as needed.
 
-flowchart TD
-    %% Input Block
-    subgraph Inputs
-      A[A[3:0]]
-      B[B[3:0]]
-      Cin[Carry-In = 0]
-    end
+1. Block Diagram of the 4‑Bit Ripple Carry Adder
 
-    %% LSB Adder Block (Stage 0)
-    subgraph Stage0 [LSB Adder]
-      LSB[LSB: A[0] ⊕ B[0]]
-      C0[Carry-Out: A[0] • B[0]]
-    end
+\documentclass[tikz,border=5pt]{standalone}
+\usetikzlibrary{positioning,arrows.meta}
+\begin{document}
+\begin{tikzpicture}[node distance=1.5cm and 2cm, auto, >=Stealth]
+    % Input Block
+    \node[draw, rectangle] (A) {A[3:0]};
+    \node[draw, rectangle, right=of A] (B) {B[3:0]};
+    \node[draw, rectangle, below=of A] (Cin) {Carry-In = 0};
 
-    %% Full Adder Blocks (Stages 1-3)
-    subgraph Stage1 [Full Adder 1]
-      FA1[Full Adder]
-    end
-    subgraph Stage2 [Full Adder 2]
-      FA2[Full Adder]
-    end
-    subgraph Stage3 [Full Adder 3]
-      FA3[Full Adder]
-    end
+    % LSB Adder Block (Stage 0)
+    \node[draw, rectangle, below=of Cin, yshift=-1cm] (LSB) {LSB Adder\\$A[0]\oplus B[0]$};
+    \node[draw, rectangle, right=of LSB, xshift=1cm] (C0) {Carry-Out\\$A[0]\cdot B[0]$};
 
-    %% Wiring between blocks
-    A -->|Bit 0| LSB
-    B -->|Bit 0| LSB
-    Cin --> LSB
+    % Full Adder Blocks (Stages 1-3)
+    \node[draw, rectangle, below=of LSB, yshift=-1cm] (FA1) {Full Adder 1};
+    \node[draw, rectangle, below=of FA1, yshift=-1cm] (FA2) {Full Adder 2};
+    \node[draw, rectangle, below=of FA2, yshift=-1cm] (FA3) {Full Adder 3};
 
-    LSB --> S0[SUM[0]]
-    LSB --> C0
+    % Output Nodes for Sums and Carries
+    \node[draw, rectangle, right=of LSB, xshift=3cm] (S0) {SUM[0]};
+    \node[draw, rectangle, right=of FA1, xshift=3cm] (S1) {SUM[1]};
+    \node[draw, rectangle, right=of FA2, xshift=3cm] (S2) {SUM[2]};
+    \node[draw, rectangle, right=of FA3, xshift=3cm] (S3) {SUM[3]};
+    \node[draw, rectangle, right=of FA3, xshift=5cm] (Cout) {Final Carry-Out};
 
-    C0 --> FA1
-    FA1 --> S1[SUM[1]]
-    FA1 --> C1[Carry-Out]
+    % Connections
+    \draw[->] (A) -- node[above]{Bit 0} (LSB);
+    \draw[->] (B) -- node[above]{Bit 0} (LSB);
+    \draw[->] (Cin) -- (LSB);
 
-    C1 --> FA2
-    FA2 --> S2[SUM[2]]
-    FA2 --> C2[Carry-Out]
+    \draw[->] (LSB) -- (S0);
+    \draw[->] (LSB) -- (C0);
 
-    C2 --> FA3
-    FA3 --> S3[SUM[3]]
-    FA3 --> Cout[Final Carry-Out]
+    \draw[->] (C0) -- (FA1);
+    \draw[->] (FA1) -- (S1);
+    \node[draw, rectangle, right=of FA1, xshift=1cm] (C1) {Carry-Out};
+    \draw[->] (FA1) -- (C1);
+
+    \draw[->] (C1) -- (FA2);
+    \draw[->] (FA2) -- (S2);
+    \node[draw, rectangle, right=of FA2, xshift=1cm] (C2) {Carry-Out};
+    \draw[->] (FA2) -- (C2);
+
+    \draw[->] (C2) -- (FA3);
+    \draw[->] (FA3) -- (S3);
+    \node[draw, rectangle, right=of FA3, xshift=1cm] (C3) {Carry-Out};
+    \draw[->] (FA3) -- (C3);
+    \draw[->] (C3) -- (Cout);
+\end{tikzpicture}
+\end{document}
 
 2. Flowchart for the Design Process
 
-flowchart TD
-    A[Understand Requirements: LSB Block, Full Adder Blocks, Simplified LSB]
-    B[Create Truth Tables for each block]
-    C[Derive Logic Expressions: SUM = XOR; Carry-Out = AND (LSB) and Full Adder uses XOR with majority function]
-    D[Implement LTSpice Circuits: Design & connect gates]
-    E[Test & Simulate: Validate outputs vs. truth tables]
-    F[Assemble 4-bit Adder: Chain blocks together]
-    G[Final Testing: Run full adder simulation with sample inputs]
+\documentclass[tikz,border=5pt]{standalone}
+\usetikzlibrary{positioning, shapes, arrows.meta}
+\begin{document}
+\begin{tikzpicture}[node distance=1.2cm, auto, >=Stealth]
+    \tikzstyle{block}=[draw, rectangle, align=center, minimum width=3cm, minimum height=1cm];
 
-    A --> B
-    B --> C
-    C --> D
-    D --> E
-    E --> F
-    F --> G
+    \node[block] (A) {Understand Requirements:\\ LSB Block, Full Adder Blocks, Simplified LSB};
+    \node[block, below=of A] (B) {Create Truth Tables for each block};
+    \node[block, below=of B] (C) {Derive Logic Expressions:\\ SUM = XOR; Carry-Out = AND (LSB)\\ and Full Adder uses XOR with majority function};
+    \node[block, below=of C] (D) {Implement LTSpice Circuits:\\ Design \& connect gates};
+    \node[block, below=of D] (E) {Test \& Simulate:\\ Validate outputs vs. truth tables};
+    \node[block, below=of E] (F) {Assemble 4-bit Adder:\\ Chain blocks together};
+    \node[block, below=of F] (G) {Final Testing:\\ Run full adder simulation with sample inputs};
+
+    \draw[->] (A) -- (B);
+    \draw[->] (B) -- (C);
+    \draw[->] (C) -- (D);
+    \draw[->] (D) -- (E);
+    \draw[->] (E) -- (F);
+    \draw[->] (F) -- (G);
+\end{tikzpicture}
+\end{document}
 
 3. Data Flow Diagram (DFD)
 
-flowchart TD
-    %% Data Sources
-    subgraph Sources
-      A[A[3:0]]
-      B[B[3:0]]
-      Cin[Carry-In]
-    end
+\documentclass[tikz,border=5pt]{standalone}
+\usetikzlibrary{positioning, shapes, arrows.meta, fit}
+\begin{document}
+\begin{tikzpicture}[node distance=1.5cm, auto, >=Stealth]
 
-    %% Processing Blocks
-    subgraph Processing
-      XOR[XOR Gates (for Sum Calculation)]
-      AND_OR[AND/OR Gates (for Carry-Out Calculation)]
-    end
+    % Sources (Left Column)
+    \node[draw, rectangle] (A) {A[3:0]};
+    \node[draw, rectangle, below=of A] (B) {B[3:0]};
+    \node[draw, rectangle, below=of B] (Cin) {Carry-In};
 
-    %% Outputs
-    subgraph Outputs
-      SUM[SUM[3:0]]
-      Cout[Carry-Out]
-    end
+    % Processing (Middle Column)
+    \node[draw, rectangle, right=3cm of $(A)!0.5!(Cin)$] (XOR) {XOR Gates\\(Sum Calculation)};
+    \node[draw, rectangle, below=of XOR] (ANDOR) {AND/OR Gates\\(Carry-Out Calculation)};
 
-    A --> XOR
-    B --> XOR
-    XOR --> SUM
+    % Outputs (Right Column)
+    \node[draw, rectangle, right=3cm of XOR] (SUM) {SUM[3:0]};
+    \node[draw, rectangle, below=of SUM] (Cout) {Carry-Out};
 
-    Cin --> AND_OR
-    AND_OR --> Cout
+    % Connections
+    \draw[->] (A) -- (XOR);
+    \draw[->] (B) -- (XOR);
+    \draw[->] (XOR) -- (SUM);
+
+    \draw[->] (Cin) -- (ANDOR);
+    \draw[->] (ANDOR) -- (Cout);
+
+    % (Optional dashed boundaries can be added using the 'fit' library)
+\end{tikzpicture}
+\end{document}
 
 4. Truth Table for LSB Block (Carry-In = 0)
 
-(Presented as a flowchart of input–output pairs for clarity.)
+\documentclass[tikz,border=5pt]{standalone}
+\begin{document}
+\begin{tikzpicture}[node distance=1.5cm, auto, >=Stealth]
+    % Input nodes
+    \node[draw, rectangle] (A0) {A[0]=0, B[0]=0};
+    \node[draw, rectangle, below=of A0] (A1) {A[0]=0, B[0]=1};
+    \node[draw, rectangle, below=of A1] (A2) {A[0]=1, B[0]=0};
+    \node[draw, rectangle, below=of A2] (A3) {A[0]=1, B[0]=1};
 
-flowchart TD
-    A0["A[0]=0, B[0]=0"]
-    A1["A[0]=0, B[0]=1"]
-    A2["A[0]=1, B[0]=0"]
-    A3["A[0]=1, B[0]=1"]
+    % Output nodes
+    \node[draw, rectangle, right=3cm of A0] (T0) {SUM[0]=0, Carry=0};
+    \node[draw, rectangle, right=3cm of A1] (T1) {SUM[0]=1, Carry=0};
+    \node[draw, rectangle, right=3cm of A2] (T2) {SUM[0]=1, Carry=0};
+    \node[draw, rectangle, right=3cm of A3] (T3) {SUM[0]=0, Carry=1};
 
-    A0 --> T0["SUM[0]=0, Carry=0"]
-    A1 --> T1["SUM[0]=1, Carry=0"]
-    A2 --> T2["SUM[0]=1, Carry=0"]
-    A3 --> T3["SUM[0]=0, Carry=1"]
+    % Arrows
+    \draw[->] (A0) -- (T0);
+    \draw[->] (A1) -- (T1);
+    \draw[->] (A2) -- (T2);
+    \draw[->] (A3) -- (T3);
+\end{tikzpicture}
+\end{document}
 
 5. Logic Circuit Diagram for LSB Adder
 
-flowchart LR
-    A[A[0]] --> XOR[XOR Gate]
-    B[B[0]] --> XOR
-    XOR --> SUM[SUM[0] = A ⊕ B]
+\documentclass[tikz,border=5pt]{standalone}
+\begin{document}
+\begin{tikzpicture}[node distance=1.5cm, auto, >=Stealth]
+    % Nodes for the XOR path
+    \node[draw, rectangle] (A) {A[0]};
+    \node[draw, rectangle, below=of A] (B) {B[0]};
+    \node[draw, rectangle, right=of A, xshift=2cm] (XOR) {XOR Gate};
+    \node[draw, rectangle, right=of XOR, xshift=2cm] (SUM) {SUM[0] = A $\oplus$ B};
 
-    A --> AND[AND Gate]
-    B --> AND
-    AND --> Cout[CARRY_OUT = A • B]
+    % Nodes for the AND path
+    \node[draw, rectangle, below=of XOR, yshift=-1cm] (AND) {AND Gate};
+    \node[draw, rectangle, right=of AND, xshift=2cm] (Cout) {CARRY\_OUT = A $\cdot$ B};
+
+    % Arrows for the XOR path
+    \draw[->] (A) -- (XOR);
+    \draw[->] (B) -- (XOR);
+    \draw[->] (XOR) -- (SUM);
+
+    % Arrows for the AND path
+    \draw[->] (A) -- (AND);
+    \draw[->] (B) -- (AND);
+    \draw[->] (AND) -- (Cout);
+\end{tikzpicture}
+\end{document}
 
 6. Full Adder Circuit Diagram
 
-flowchart TD
-    %% Full Adder Inputs and Internal Gates
-    subgraph Full_Adder
-      A[A[i]]
-      B[B[i]]
-      Cin[Cin]
+\documentclass[tikz,border=5pt]{standalone}
+\usetikzlibrary{positioning, arrows.meta}
+\begin{document}
+\begin{tikzpicture}[node distance=1.5cm, auto, >=Stealth]
+    % Input nodes
+    \node[draw, rectangle] (A) {A[i]};
+    \node[draw, rectangle, right=of A, xshift=1.5cm] (B) {B[i]};
+    \node[draw, rectangle, right=of B, xshift=1.5cm] (Cin) {Cin};
 
-      XOR1[XOR Gate]
-      XOR2[XOR Gate]
-      SUM[SUM[i]]
+    % Sum Calculation Path
+    \node[draw, rectangle, below=of A, yshift=-1cm] (XOR1) {XOR Gate};
+    \node[draw, rectangle, right=of XOR1, xshift=1.5cm] (XOR2) {XOR Gate};
+    \node[draw, rectangle, right=of XOR2, xshift=1.5cm] (SUM) {SUM[i]};
 
-      AND1[AND Gate]
-      AND2[AND Gate]
-      AND3[AND Gate]
-      OR[OR Gate]
-      Cout[CARRY_OUT]
-    end
+    % Carry-Out Calculation Path (placed below the sum path)
+    \node[draw, rectangle, below=of XOR1, yshift=-1.5cm] (AND1) {AND Gate};
+    \node[draw, rectangle, right=of AND1, xshift=1.5cm] (AND2) {AND Gate};
+    \node[draw, rectangle, below=of Cin, yshift=-2.5cm] (AND3) {AND Gate};
+    \node[draw, rectangle, right=of AND2, xshift=1.5cm] (OR) {OR Gate};
+    \node[draw, rectangle, right=of OR, xshift=1.5cm] (Cout) {CARRY\_OUT};
 
-    %% Sum Calculation Path
-    A --> XOR1
-    B --> XOR1
-    XOR1 --> XOR2
-    Cin --> XOR2
-    XOR2 --> SUM
+    % Sum path connections
+    \draw[->] (A) -- (XOR1);
+    \draw[->] (B) -- (XOR1);
+    \draw[->] (XOR1) -- (XOR2);
+    \draw[->] (Cin) -- (XOR2);
+    \draw[->] (XOR2) -- (SUM);
 
-    %% Carry-Out Calculation Paths
-    A --> AND1
-    B --> AND1
+    % Carry-Out path connections
+    \draw[->] (A) -- (AND1);
+    \draw[->] (B) -- (AND1);
 
-    B --> AND2
-    Cin --> AND2
+    \draw[->] (B) -- (AND2);
+    \draw[->] (Cin) -- (AND2);
 
-    A --> AND3
-    Cin --> AND3
+    \draw[->] (A) -- (AND3);
+    \draw[->] (Cin) -- (AND3);
 
-    AND1 --> OR
-    AND2 --> OR
-    AND3 --> OR
-    OR --> Cout
+    \draw[->] (AND1) -- (OR);
+    \draw[->] (AND2) -- (OR);
+    \draw[->] (AND3) -- (OR);
+    \draw[->] (OR) -- (Cout);
+\end{tikzpicture}
+\end{document}
 
 7. Simplified LSB Block Diagram
 
-(This is the optimized LSB block without the Carry-In input.)
+(This diagram is nearly identical to Diagram 5.)
 
-flowchart LR
-    A[A[0]] --> XOR[XOR Gate]
-    B[B[0]] --> XOR
-    XOR --> SUM[SUM[0] = A ⊕ B]
+\documentclass[tikz,border=5pt]{standalone}
+\begin{document}
+\begin{tikzpicture}[node distance=1.5cm, auto, >=Stealth]
+    \node[draw, rectangle] (A) {A[0]};
+    \node[draw, rectangle, below=of A] (B) {B[0]};
+    \node[draw, rectangle, right=of A, xshift=2cm] (XOR) {XOR Gate};
+    \node[draw, rectangle, right=of XOR, xshift=2cm] (SUM) {SUM[0] = A $\oplus$ B};
 
-    A --> AND[AND Gate]
-    B --> AND
-    AND --> Cout[CARRY_OUT = A • B]
+    \node[draw, rectangle, below=of XOR, yshift=-1cm] (AND) {AND Gate};
+    \node[draw, rectangle, right=of AND, xshift=2cm] (Cout) {CARRY\_OUT = A $\cdot$ B};
 
-8. Integrated 4-Bit Ripple Carry Adder Diagram
+    \draw[->] (A) -- (XOR);
+    \draw[->] (B) -- (XOR);
+    \draw[->] (XOR) -- (SUM);
 
-flowchart TD
-    %% Stage 0: Simplified LSB
-    subgraph Stage0 [LSB Adder]
-      LSB[LSB: A[0] ⊕ B[0]]
-      C0[Carry-Out: A[0] • B[0]]
-    end
+    \draw[->] (A) -- (AND);
+    \draw[->] (B) -- (AND);
+    \draw[->] (AND) -- (Cout);
+\end{tikzpicture}
+\end{document}
 
-    %% Stage 1: Full Adder 1
-    subgraph Stage1 [Full Adder 1]
-      FA1[Full Adder]
-      S1[SUM[1]]
-      C1[Carry-Out]
-    end
+8. Integrated 4‑Bit Ripple Carry Adder Diagram
 
-    %% Stage 2: Full Adder 2
-    subgraph Stage2 [Full Adder 2]
-      FA2[Full Adder]
-      S2[SUM[2]]
-      C2[Carry-Out]
-    end
+\documentclass[tikz,border=5pt]{standalone}
+\usetikzlibrary{positioning, shapes, arrows.meta}
+\begin{document}
+\begin{tikzpicture}[node distance=1.5cm, auto, >=Stealth]
+    % Input nodes
+    \node[draw, rectangle] (A) {A[3:0]};
+    \node[draw, rectangle, right=of A] (B) {B[3:0]};
+    \node[draw, rectangle, below=of A] (Cin) {Carry-In = 0};
 
-    %% Stage 3: Full Adder 3
-    subgraph Stage3 [Full Adder 3]
-      FA3[Full Adder]
-      S3[SUM[3]]
-      C3[Final Carry-Out]
-    end
+    % Stage 0: LSB Adder
+    \node[draw, rectangle, below=of Cin, yshift=-1cm] (LSB) {LSB Adder:\\ $A[0]\oplus B[0]$};
+    \node[draw, rectangle, right=of LSB, xshift=1cm] (C0) {Carry-Out:\\ $A[0]\cdot B[0]$};
+    \node[draw, rectangle, right=of LSB, xshift=3.5cm] (S0) {SUM[0]};
 
-    %% Inputs and Connections
-    A[A[3:0]] -->|Bit0| LSB
-    B[B[3:0]] -->|Bit0| LSB
-    Cin[Carry-In = 0] --> LSB
+    % Stage 1: Full Adder 1
+    \node[draw, rectangle, below=of LSB, yshift=-1.5cm] (FA1) {Full Adder 1};
+    \node[draw, rectangle, right=of FA1, xshift=3cm] (S1) {SUM[1]};
+    \node[draw, rectangle, right=of FA1, xshift=1cm] (C1) {Carry-Out};
 
-    LSB --> S0[SUM[0]]
-    LSB --> C0
+    % Stage 2: Full Adder 2
+    \node[draw, rectangle, below=of FA1, yshift=-1.5cm] (FA2) {Full Adder 2};
+    \node[draw, rectangle, right=of FA2, xshift=3cm] (S2) {SUM[2]};
+    \node[draw, rectangle, right=of FA2, xshift=1cm] (C2) {Carry-Out};
 
-    C0 --> FA1
-    FA1 --> S1
-    FA1 --> C1
+    % Stage 3: Full Adder 3
+    \node[draw, rectangle, below=of FA2, yshift=-1.5cm] (FA3) {Full Adder 3};
+    \node[draw, rectangle, right=of FA3, xshift=3cm] (S3) {SUM[3]};
+    \node[draw, rectangle, right=of FA3, xshift=1cm] (C3) {Final Carry-Out};
 
-    C1 --> FA2
-    FA2 --> S2
-    FA2 --> C2
+    % Connections for Stage 0
+    \draw[->] (A) -- node[above]{Bit 0} (LSB);
+    \draw[->] (B) -- node[above]{Bit 0} (LSB);
+    \draw[->] (Cin) -- (LSB);
+    \draw[->] (LSB) -- (S0);
+    \draw[->] (LSB) -- (C0);
 
-    C2 --> FA3
-    FA3 --> S3
-    FA3 --> C3
+    % Connections from Stage 0 to Stage 1
+    \draw[->] (C0) -- (FA1);
 
-9. Simulation Waveform Diagram
+    % Connections for Stage 1
+    \draw[->] (FA1) -- (S1);
+    \draw[->] (FA1) -- (C1);
 
-(Using a sequence diagram to represent different test cases and expected outputs.)
+    % Connections from Stage 1 to Stage 2
+    \draw[->] (C1) -- (FA2);
 
-sequenceDiagram
-    participant Test as Test Case
-    participant Adder as 4-bit Adder
+    % Connections for Stage 2
+    \draw[->] (FA2) -- (S2);
+    \draw[->] (FA2) -- (C2);
 
-    Test->>Adder: Input 0000 + 0000
-    Adder-->>Test: Output 00000 (No carry propagation)
+    % Connections from Stage 2 to Stage 3
+    \draw[->] (C2) -- (FA3);
 
-    Test->>Adder: Input 0001 + 1111
-    Adder-->>Test: Output 10000 (Carry propagates through all bits)
+    % Connections for Stage 3
+    \draw[->] (FA3) -- (S3);
+    \draw[->] (FA3) -- (C3);
+\end{tikzpicture}
+\end{document}
 
-    Test->>Adder: Input 1010 + 0101
-    Adder-->>Test: Output 11111 (Alternating bits addition)
+9. Simulation Waveform Diagram (Sequence Diagram)
 
-Each diagram captures a specific aspect of the design process—from high-level block connectivity to detailed logic implementation and testing scenarios. Feel free to request further refinements or additional details on any of these visualizations!
+\documentclass[tikz,border=5pt]{standalone}
+\usetikzlibrary{positioning, arrows.meta}
+\begin{document}
+\begin{tikzpicture}[node distance=2cm, auto, >=Stealth]
+    % Participants
+    \node (Test) {Test Case};
+    \node[right=5cm of Test] (Adder) {4-bit Adder};
+
+    % Test 1
+    \node[below=of Test] (T1) {Input: 0000 + 0000};
+    \node[below=of Adder] (A1) {Output: 00000\\(No carry propagation)};
+    \draw[->] (T1) -- (A1) node[midway, above] {};
+    \draw[->] (A1) -- ++(-2,0) |- (T1);
+
+    % Test 2
+    \node[below=of T1] (T2) {Input: 0001 + 1111};
+    \node[below=of A1] (A2) {Output: 10000\\(Carry propagates)};
+    \draw[->] (T2) -- (A2);
+    \draw[->] (A2) -- ++(-2,0) |- (T2);
+
+    % Test 3
+    \node[below=of T2] (T3) {Input: 1010 + 0101};
+    \node[below=of A2] (A3) {Output: 11111\\(Alternating bits addition)};
+    \draw[->] (T3) -- (A3);
+    \draw[->] (A3) -- ++(-2,0) |- (T3);
+\end{tikzpicture}
+\end{document}
+
+Each snippet uses basic TikZ nodes and arrows to create a diagram analogous to its MermaidJS counterpart. Feel free to adjust the styling, positioning, or add extra annotations as needed for your project.
