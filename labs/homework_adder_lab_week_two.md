@@ -8,3 +8,10 @@ Please include the following in your lab report:
 4. Lessons Learned: Summarize challenges encountered and insights gained during the lab.
 
 ---
+
+## Schematics and Diagrams
+
+- Multi-Bit Adder Wiring Diagram: [View Diagram](../docs/diagrams/wiring/multi_bit_adder.png)
+- Memory Hierarchy Diagram: [View Diagram](../docs/diagrams/hardware/memory_hierarchy.md)
+
+---
