@@ -1,5 +1,29 @@
 # C Language Microarchitecture Lab
 
+## Quick Start Guide
+
+### Required Compilers
+
+- GCC (version 9 or later) or Clang (version 10 or later)
+
+### Recommended IDEs
+
+- Visual Studio Code, Sublime Text, or CLion
+
+### Troubleshooting Tips
+
+- Ensure that environment variables for compiler paths are set correctly.
+- Install necessary libraries specified in the documentation.
+- Consult the 'Issues' section of the repository for common setup problems.
+
+## Running Tests
+
+- To run the test suite, execute `make test` from this directory.
+- The test suite covers edge cases such as overflow, zero, and negative inputs.
+- For detailed assertion messages, refer to test_framework.h.
+
+---
+
 ## Overview
 
 This directory contains low-level system programming examples, memory management techniques, and performance optimization demonstrations using C.
@@ -51,6 +75,7 @@ make clean
 ## Memory Visualizer
 
 The `memory_visualizer.c` provides insights into:
+
 - Memory allocation patterns
 - Pointer tracking
 - Memory usage analysis
@@ -58,10 +83,11 @@ The `memory_visualizer.c` provides insights into:
 ## Contributing
 
 Contributions are welcome! Please follow these guidelines:
+
 - Maintain code readability
 - Add comprehensive comments
 - Include test cases for new implementations
 
 ## License
 
-[Specify your license] 
+[Specify your license]
