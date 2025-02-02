@@ -25,7 +25,7 @@
 + + Step 1: Identify the sign bit.
 + + Step 2: Invert the bits (for negative numbers) and add 1.
 + + Partial Solution: For binary 101 -> Inversion gives 010; adding 1 yields 011.
-+ Visual Aid: ![2's Complement Example](path/to/2s_complement_example.png)
++ Visual Aid: ![2's Complement Example](../../path/to/2s_complement_example.png)
 
 +
 
@@ -64,7 +64,7 @@
 + Instructions:
 + + Mark ambiguous or irrelevant inputs with an 'X'.
 + + During grouping, treat 'X' as 0 to simplify the expression.
-+ Visual Aid: ![Don't Care Handling Diagram](path/to/dont_care_handling.png)
++ Visual Aid: ![Don't Care Handling Diagram](../../path/to/dont_care_handling.png)
 
 +
 
@@ -78,7 +78,7 @@
 + A + A' = 1
 + A · A' = 0
 +- Additional Resources:
-+ [Binary Arithmetic Reference](link/to/binary_arithmetic)
-+ [Boolean Algebra Rules](link/to/boolean_algebra)
++ [Binary Arithmetic Reference](../../link/to/binary_arithmetic)
++ [Boolean Algebra Rules](../../link/to/boolean_algebra)
 
 + ---
