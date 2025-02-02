@@ -6,10 +6,10 @@ This week, we will design a very important part of a computer: The Arithmetic Lo
 
 A basic, traditional computer typically consists of four main blocks:
 
-*   **ALU:** Performs mathematical and data manipulation operations.
-*   **Controller:** Directs the other blocks, instructing them when and what to do (the boss).
-*   **Memory:** Stores data and programs.
-*   **I/O Block:** Handles communication with the outside world, off the CPU.
+• ALU: Performs mathematical and data manipulation operations.
+• Controller: Directs the other blocks, instructing them when and what to do (the boss).
+• Memory: Stores data and programs.
+• I/O Block: Handles communication with the outside world, off the CPU.
 
 Inside the ALU, you might find various circuits such as adders (for binary number addition), multipliers, dividers, subtractors, and other data manipulation units. The specific functions within an ALU depend on the computer's intended applications. While we haven't yet discussed floating-point numbers, an ALU might be designed to work with 2's complement numbers, floating-point numbers, or both.  For computers processing significant amounts of image data, the ALU might include specialized blocks for efficient linear algebra operations.
 
@@ -25,7 +25,7 @@ The deliverable for this lab is a report documenting your design process. This r
 
 When undertaking a design task, it is recommended to follow these steps:
 
-1.  **Understand the Problem:**  You will be designing an adder, starting with a single block today and progressing to a complete adder on Wednesday. The final adder will take two 4-bit numbers, A and B, as inputs and produce their sum, Out, as output. The symbol for an adder is depicted below:
+1. **Understand the Problem:**  You will be designing an adder, starting with a single block today and progressing to a complete adder on Wednesday. The final adder will take two 4-bit numbers, A and B, as inputs and produce their sum, Out, as output. The symbol for an adder is depicted below:
 
     [Diagram of Adder Symbol]
 
@@ -33,11 +33,11 @@ When undertaking a design task, it is recommended to follow these steps:
 
     The same symbol can be used for other arithmetic operations, with the operation symbol changed from the plus sign to reflect the actual operation performed by the block.
 
-    *   Multiplication: [Symbol for Multiplication]
-    *   Subtraction: [Symbol for Subtraction]
-    *   Division: [Symbol for Division]
+    * Multiplication: [Symbol for Multiplication]
+    * Subtraction: [Symbol for Subtraction]
+    * Division: [Symbol for Division]
 
-2.  **Binary Addition:** Adding in base-2 (binary) is analogous to base-10 addition. However, in base-10, you carry over when the sum in a column is 10 or greater. In base-2, you carry when the sum in a column is 2 or greater.  Generally, if the sum in a column equals or exceeds the base, you carry.
+2. **Binary Addition:** Adding in base-2 (binary) is analogous to base-10 addition. However, in base-10, you carry over when the sum in a column is 10 or greater. In base-2, you carry when the sum in a column is 2 or greater.  Generally, if the sum in a column equals or exceeds the base, you carry.
 
     **Example from Lecture Slides:**
 
@@ -73,7 +73,7 @@ ii. **Enter Circuits into LTSpice:** Implement your designed circuits in LTSpice
 iii. **Create a Symbol:** Generate a symbol for the block in LTSpice.
 iv. **Make a Test Schematic:** Create a new schematic in LTSpice to test your block.
 v.  **Test and Simulate:** Simulate the block for all possible input combinations. Include screenshots of your simulations in your report.
-vi. **Submit Design Files:** You will be asked to submit your design files. Ensure you back up your *.asc and *.asy files.
+vi. **Submit Design Files:** You will be asked to submit your design files. Ensure you back up your *.asc and*.asy files.
 
 **Additional Task:**
 
@@ -91,3 +91,13 @@ xiii. **Test and Verify:** Test the overall circuit to ensure it functions corre
 **Report Conclusion:**
 
 In your report, follow these outlined steps and include all your work to demonstrate your design process.
+
+## Conceptual Map
+
+• Overview: This lab report details the design and analysis of the ALU, emphasizing key architectural components.
+• Key Elements:
+
+* ALU Functionality
+* Controller Operations
+* Memory Integration
+* I/O Communication
