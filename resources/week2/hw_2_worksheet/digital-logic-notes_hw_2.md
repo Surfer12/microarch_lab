@@ -1,6 +1,5 @@
 # Digital Logic Concepts - Comprehensive Notes
 
-
 1. Clear hierarchical organization using sections and subsections
 
 2. Mathematical formalism using LaTeX notation for:
@@ -14,26 +13,32 @@
    - K-map optimization principles
 
 For additional work, we could:
+
 1. Add more detailed K-map examples
 2. Include step-by-step conversion examples
 3. Expand the don't care conditions analysis
 4. Add practice problems with solutions
 
 What aspect would be most helpful to explore further?
+
 ## 1. Two's Complement Conversion Methodology
 
 ### 1.1 Core Principles
+
 For an 8-bit system, two's complement conversion follows these recursive steps:
 
 For negative numbers ($$n$$):
+
 1. Convert $$|n|$$ to binary (8 bits)
 2. Invert all bits ($$\text{NOT}$$ operation)
 3. Add 1 to the result
 
 For positive numbers:
+
 - Direct binary representation with leading 0
 
 ### 1.2 Representation Framework
+
 Each number requires four distinct representations:
 
 $$
@@ -61,6 +66,7 @@ $$
 ## 2. Sum-of-Products (SOP) Derivation
 
 ### 2.1 Boolean Function Construction
+
 For a truth table with inputs $$A$$ and $$B$$:
 
 $$
@@ -80,6 +86,7 @@ The SOP expression is constructed as:
 $$\text{Out} = \overline{A}B + AB$$
 
 ### 2.2 Three-Input Systems
+
 For inputs $$A$$, $$B$$, and $$C$$:
 
 $$
@@ -99,6 +106,7 @@ $$
 ## 3. Thermometer Code Conversion
 
 ### 3.1 State Mapping
+
 Thermometer code follows the sequence:
 $$000_2 \rightarrow 001_2 \rightarrow 011_2 \rightarrow 111_2$$
 
@@ -113,6 +121,7 @@ $$
 $$
 
 ### 3.2 Don't Care Conditions
+
 For input bits $$[T_2T_1T_0]$$, invalid states are marked as don't care (X):
 
 $$
@@ -131,6 +140,7 @@ $$
 ## 4. Karnaugh Map Optimization
 
 ### 4.1 Prime Implicant Identification
+
 For a K-map with variables $$A$$ and $$B$$:
 
 $$
@@ -144,6 +154,7 @@ A'B' & A'B \\
 $$
 
 ### 4.2 Minimization Rules
+
 1. Group adjacent 1's in powers of 2
 2. Include don't cares (X) when beneficial
 3. Minimize number of terms in final expression
