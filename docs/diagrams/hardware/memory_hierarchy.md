@@ -1,11 +1,13 @@
 # Memory Hierarchy Diagram
 
 ## Overview
+
 This Mermaid diagram illustrates the complex memory hierarchy in modern computer systems, showing the relationship between different levels of memory and storage.
 
 <!-- [MermaidChart: 425bbb25-b652-4f80-aea3-fb6273eb2257] -->
 
 ## Diagram Description
+
 ```mermaid
 graph TD
     A[CPU] --> B[Registers]
@@ -14,7 +16,7 @@ graph TD
     D --> E[L3 Cache]
     E --> F[Main Memory RAM]
     F --> G[Virtual Memory/Swap]
-    
+
     style A fill:#f9f,stroke:#333
     style B fill:#ff9,stroke:#333
     style C fill:#9f9,stroke:#333
@@ -25,7 +27,8 @@ graph TD
 ```
 
 ## Memory Levels Explained
-1. **Registers**: 
+
+1. **Registers**:
    - Fastest memory
    - Directly inside the CPU
    - Extremely small storage capacity
@@ -57,12 +60,14 @@ graph TD
    - Slowest memory access method
 
 ## Performance Implications
+
 - Each level represents a trade-off between speed and capacity
 - Closer to the CPU means faster access but smaller size
 - Memory hierarchy design is crucial for system performance
 
 ## Key Concepts
+
 - Locality of Reference
 - Cache Coherence
 - Memory Bandwidth
-- Latency vs Throughput 
+- Latency vs Throughput
