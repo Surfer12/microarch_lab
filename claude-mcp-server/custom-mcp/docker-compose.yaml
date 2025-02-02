@@ -1,6 +1,13 @@
+version: '3.8'
+
 services:
   custom-mcp:
     build:
-      context: ./claude-mcp-server/custom-mcp
+      context: .
+      dockerfile: dockerfile
     ports:
       - "3000:3000"
+    volumes:
+      - .:/app
+    environment:
+      NODE_ENV: production

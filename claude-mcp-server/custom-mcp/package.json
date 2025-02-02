@@ -1,17 +1,17 @@
 {
-"name": "custom-mcp-server",
-"version": "1.0.0",
-"description": "Custom MCP Server Application",
-"main": "custom-server.js",
-"scripts": {
-    "start": "node custom-server.js"
-},
-"dependencies": {
-    "express": "^4.17.1",
-    "@modelcontextprotocol/sdk": "latest",
-    "ws": "^8.0.0"
-},
-"keywords": ["mcp", "server"],
-"author": "",
-"license": "ISC"
+  "name": "cursor-mcp-server",
+  "version": "0.1.0",
+  "description": "MCP Server for Cursor IDE Integration",
+  "type": "module",
+  "main": "custom-server.js",
+  "scripts": {
+    "start": "node custom-server.js",
+    "dev": "node --watch custom-server.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "latest"
+  },
+  "keywords": ["mcp", "cursor", "ide", "integration"],
+  "author": "",
+  "license": "MIT"
 }
