@@ -1,201 +1,181 @@
-Week 2 (1/27, 1/29): Numbers, data, gates, truth tables, and other digital system design stuff. LTSpice videos.
->> Previous week's link: Week 1: Course introduction
+# Week 2: Digital System Design Overview (1/27 & 1/29)
 
->>>>>>>>>>>>> ======================== <<<<<<<<<<<<<<<<
+Previous Week: [Week 1: Course Introduction]
 
-Monday 1/27:  Numbers. Positive binary, and 2's complement numbers.
+--------------------------------------------------
 
-Prep:
+Section I: Monday 1/27 – Numbers, Binary, and Gates
+--------------------------------------------------
 
-Part 1: Make sure to do the homework for last week. We will be building on base-2 so please be comfortable with it when you come to class. If you want more practice, randomly pick a number and check your answer ( https://www.rapidtables.com/convert/number/base-converter.html Links to an external site. )
+● **Prep:**
 
-Part 2: Reading on gates: https://www.geeksforgeeks.org/logic-gates/ Links to an external site. .
+- **Part 1:** Complete last week’s homework and review base-2 concepts. For extra practice, use this converter:
+    <https://www.rapidtables.com/convert/number/base-converter.html>
+- **Part 2:** Read about logic gates on GeeksforGeeks:
+    <https://www.geeksforgeeks.org/logic-gates/>
 
-Lecture notes:
+● **Lecture Notes:**
 
-Continued on last week's slides: L1_CourseOverviewPart1.pptx Download L1_CourseOverviewPart1.pptx
+- **Continued Slides:**
+  - L1_CourseOverviewPart1.pptx _(Download)_
+  - L1_CourseOverviewPart1 with scribbles from class _(Download)_
+- **New Topics:**
+  - Numbers Part 2 _(Download)_
+  - Gates! _(Download)_
 
-Slides with scribbles from lecture included: L1_CourseOverviewPart1 with scribbles from class.pptx Download L1_CourseOverviewPart1 with scribbles from class.pptx
+● **In-Class (Lecture):**
 
-New for today: Numbers part 2 Download Numbers part 2
+- **First Hour:** Introduction to 2’s complement numbers, exploring logic gates, and their role in circuit design.
+- **Second Hour:** Hands-on circuit building using gates.
 
-Plus more new for today: Gates! Download Gates!
+● **LTSpice Tutorials:**
+  _(Ensure LTSpice is installed on lab/classroom computers.)_
 
-In Class (Lecture):
+- Video 1: Downloading and starting a drawing
+    <https://cuesta-edu.zoom.us/rec/share/tDegJ9lfJXNo6X1aZT1ulEqf2Hm5Ump_aOH5Qa79oy5rRywk_rNOOVX-UPJccQn_.Lkyo4_lz9kJwBg17?startTime=1737667447000>
+- Video 2: Setting up the files
+    <https://cuesta-edu.zoom.us/rec/share/7ci0nb96LW30D2miOKJTILUSnJhMenuNJpKt1f5AVrgvh_mjBR3kd4KIOCL0ZWvv.ndQveofZSezi9iD-?startTime=1737668710000>
+- Video 3: Drawing components and wiring
+    <https://cuesta-edu.zoom.us/rec/share/7ci0nb96LW30D2miOKJTILUSnJhMenuNJpKt1f5AVrgvh_mjBR3kd4KIOCL0ZWvv.ndQveofZSezi9iD-?startTime=1737668942000>
+- Video 4: Creating inputs, simulation, and graphing
+    <https://cuesta-edu.zoom.us/rec/share/v0w_OUddE2c2x_amoTBKG-1tquXG8bosgyaBYZqQiwzayfbRsncIVzVCmqiuphMS.9C4M1PElh7ZyqVGD?startTime=1737675355000>
+- Video 5: Creating custom symbols
+    <https://cuesta-edu.zoom.us/rec/share/zjhkKPUo6XLhtZSxKa7Lly1Bh2Z6ouJJ3O-Q9nmYnI8hcIZzOwAlv9CLUTj9Otho.BCugj2cMbwfTnL79?startTime=1737670569000>
+- Video 6: Start-to-finish demonstration
+    <https://cuesta-edu.zoom.us/rec/share/pHuVq-A2WJt9Spns3yfuKlmyCrMcyVMsEpFtZ9F2GUWjSDJVxoixHk6xgHs2Nfvp.iT3uyILh33i-3WTP?startTime=1737678314000>
 
-First hour: Lecture will be on 2's complement numbers and gates and circuit design with gates. Some practice on 2's complement and then we'll look at what a gate is and how to use them to build circuits. Building circuits will go into second hour.
+● **In-Class (Lab):**
 
-LTSpice should be installed on the lab/classroom computers. We'll go through this in class but here are some videos to help if you forget anything:
+- **Activity:** Using the simulator to build an adder with gates.
+- **Resources:**
+  - Lab Handout: _Lab 2: Introduction to LTSpice_ _(Download)_
+  - Lab Files: [LogicLibrary.zip](Download)
 
-LTSpice Video 1: Downloading and starting a drawing: https://cuesta-edu.zoom.us/rec/share/tDegJ9lfJXNo6X1aZT1ulEqf2Hm5Ump_aOH5Qa79oy5rRywk_rNOOVX-UPJccQn_.Lkyo4_lz9kJwBg17?startTime=1737667447000 Links to an external site.
+● **What's Due:**
 
-LTSpice Video 2: Setting up the files to use the tool: https://cuesta-edu.zoom.us/rec/share/7ci0nb96LW30D2miOKJTILUSnJhMenuNJpKt1f5AVrgvh_mjBR3kd4KIOCL0ZWvv.ndQveofZSezi9iD-?startTime=1737668710000 Links to an external site.
+- **Lab Assignments:** Monday's and Wednesday's lab work are due next Monday (2/3).
+- **Homework:** “CIS 240 HW2 2z comp and building with gatesUPDATED.pdf” is due 2/3.
+    _(Includes HEX, 2's complement, and logic from truth tables.)_
+- **Note:** "Don't cares" will be covered in class on Monday to allow time for the final problem.
 
-LTSpice Video 3: Drawing components in drawing window and connecting them with wires: https://cuesta-edu.zoom.us/rec/share/7ci0nb96LW30D2miOKJTILUSnJhMenuNJpKt1f5AVrgvh_mjBR3kd4KIOCL0ZWvv.ndQveofZSezi9iD-?startTime=1737668942000 Links to an external site.
+--------------------------------------------------
 
-LTSpice Video 4: How to create inputs for your circuit, how to simulate, and how use the graphing window: https://cuesta-edu.zoom.us/rec/share/v0w_OUddE2c2x_amoTBKG-1tquXG8bosgyaBYZqQiwzayfbRsncIVzVCmqiuphMS.9C4M1PElh7ZyqVGD?startTime=1737675355000 Links to an external site.
+Section II: Comprehensive Breakdown, Conceptual Map & Glossary
+--------------------------------------------------
 
-LTSpice Video 5: Creating symbols: https://cuesta-edu.zoom.us/rec/share/zjhkKPUo6XLhtZSxKa7Lly1Bh2Z6ouJJ3O-Q9nmYnI8hcIZzOwAlv9CLUTj9Otho.BCugj2cMbwfTnL79?startTime=1737670569000 Links to an external site.
+### Detailed List of Key Concepts
 
-LTSpice Video 6: Start to finish:  https://cuesta-edu.zoom.us/rec/share/pHuVq-A2WJt9Spns3yfuKlmyCrMcyVMsEpFtZ9F2GUWjSDJVxoixHk6xgHs2Nfvp.iT3uyILh33i-3WTP?startTime=1737678314000 Links to an external site.
+1. **Numbers & Data Representations**
+   - **Positive Binary Numbers:** Understanding binary representation for positive integers.
+   - **2’s Complement Numbers:** Techniques for representing negative numbers.
+   - **Base-2 Conversions:** Converting between decimal and binary (using online tools).
 
-In class (Lab):
+2. **Digital Logic & Circuit Design**
+   - **Logic Gates:**
+     • _Basic Gates:_ AND, OR, NOT, NAND, NOR, XOR, XNOR.
+     • _Application:_ Forming the building blocks for complex circuits.
+   - **Truth Tables:**
+     • _Construction:_ Listing all inputs and outputs.
+     • _Analysis:_ Utilizing “don’t care” conditions for simplification.
+   - **Circuit Construction:**
+     • Building circuits like adders and ALUs using gates.
 
-Lab hour: Gates continued. Using simulator and building an adder with gates.
+3. **Simplification Techniques**
+   - **Karnaugh Maps (KMaps):**
+     • _Usage:_ Visual tool to minimize Boolean expressions.
+     • _Application:_ Simplifying logic derived from truth tables.
 
-Lab handout: Lab 2: Introduction to LTSpice Download Lab 2: Introduction to LTSpice
+4. **LTSpice Simulation Tool**
+   - **Installation & Setup:** Making sure LTSpice is ready for use.
+   - **Drawing & Wiring:** Crafting circuit schematics and connecting components.
+   - **Simulation & Analysis:** Running simulations, setting up inputs, and analyzing outputs.
+   - **Advanced Features:** Creating custom symbols and following comprehensive video tutorials.
 
-Files for lab: LogicLibrary.zip Download LogicLibrary.zip
+5. **Assignments, Labs, and Resources**
+   - **Lab Work:** Introduction to LTSpice and hands-on circuit building.
+   - **Homework:** Covering 2's complement and logic design principles.
+   - **Supplementary Materials:** Includes lecture slides, lab handouts, external readings, and video tutorials.
 
-What's due:
-
-Lab stuff: We will do an introduction to the tools on Monday. Wednesday we will be building something more complicated. Monday's and Wednesdays lab work and the homework will be due next Monday 2/3.
-
-Homework (Question 4 removed for HW due 2/3): CIS 240 HW2 2z comp and building with gatesUPDATED.pdf Download CIS 240 HW2 2z comp and building with gatesUPDATED.pdf
-
-Where to submit homework: Homework 2: HEX, 2's complement, logic from truth tables
-
-(I'll do don't cares in class Monday. That should give you time to do the last problem before the homework is due).
-
->>>>>>>>>>>>> ======================== <<<<<<<<<<<<<<<<
-```Below is a comprehensive breakdown of the material for Week 2 along with a conceptual map to help visualize the relationships between the topics, tasks, and key terms.
-
-Detailed List of Needed Concepts
-	1.	Numbers & Data Representations
-	•	Positive Binary Numbers: Understanding binary representations for positive integers.
-	•	2’s Complement Numbers: Techniques for representing negative numbers in binary.
-	•	Base-2 Conversions: Practice converting between decimal and binary (using tools like the provided RapidTables converter).
-	2.	Digital Logic & Circuit Design
-	•	Logic Gates:
-	•	Basic Gates: AND, OR, NOT, NAND, NOR, XOR, XNOR.
-	•	Application: How these gates form the building blocks for more complex circuits.
-	•	Truth Tables:
-	•	Construction: How to list inputs and outputs.
-	•	Analysis: Understanding “don’t care” conditions and how they simplify logic.
-	•	Circuit Construction:
-	•	Building Circuits: Using gates to design functional circuits (e.g., adders, ALU components).
-	3.	Simplification Techniques
-	•	Karnaugh Maps (KMaps):
-	•	Usage: Visual tool for minimizing Boolean expressions.
-	•	Application: Simplifying logic derived from truth tables.
-	4.	LTSpice Simulation Tool
-	•	Installation & Setup: Ensuring LTSpice is ready on lab/classroom computers.
-	•	Drawing & Wiring:
-	•	How to create circuit schematics.
-	•	Connecting components with wires.
-	•	Simulation & Analysis:
-	•	Running simulations.
-	•	Creating inputs and analyzing graph outputs.
-	•	Additional Features:
-	•	Creating custom symbols.
-	•	Following a start-to-finish process as outlined in the LTSpice video tutorials.
-	5.	Assignments, Labs, and Resources
-	•	Lab Work:
-	•	Lab 2 focuses on an introduction to LTSpice and building circuits with gates.
-	•	Practical application: Building an adder circuit and later an ALU.
-	•	Homework:
-	•	Homework covering 2’s complement and logic gate design (CIS 240 HW2).
-	•	Submission deadlines: Lab work and homework due on Monday 2/3.
-	•	Supplementary Materials:
-	•	Lecture notes (both the original slides and the “scribbled” versions).
-	•	Lab handouts and supporting files (e.g., LogicLibrary.zip).
-	•	External readings and video resources (e.g., GeeksforGeeks on logic gates, KMap video).
-
-Overview of Requests
-	•	Pre-Class Preparation:
-	•	Complete previous homework and ensure familiarity with base-2 number systems.
-	•	Read the provided article on logic gates to build a foundation before class.
-	•	Watch LTSpice tutorial videos to become acquainted with the simulation tool.
-	•	In-Class Activities:
-	•	Monday Session:
-	•	Lecture on positive binary and 2’s complement numbers.
-	•	Exploration of logic gates, circuit design, and practical exercises with LTSpice.
-	•	Wednesday Session:
-	•	Further exploration into data representations (beyond numbers) and introduction to KMaps.
-	•	Continued lab work on gate-based circuit design, including the construction of an ALU.
-	•	Assignments & Deadlines:
-	•	Complete lab exercises and homework (CIS 240 HW2) covering the discussed concepts.
-	•	Submit lab work and homework by the upcoming Monday (2/3).
-	•	Next Steps:
-	•	A preview of Week 3 topics (registers, memory, and computer block diagrams) is provided for continuity.
-
-Key Terms & Ideas
-	•	Binary & 2’s Complement: Fundamental for digital representation of data.
-	•	Logic Gates & Truth Tables: Core components for designing and analyzing digital circuits.
-	•	LTSpice: A simulation environment for circuit design, featuring multiple instructional videos.
-	•	Karnaugh Maps (KMaps): A method for simplifying Boolean expressions and logic circuits.
-	•	Digital Circuit Design: Practical application of theory through lab work (e.g., building adders and ALUs).
-	•	Assignments & Deadlines: Structured tasks to reinforce concepts learned during lectures and labs.
-
-Conceptual Map
+### Conceptual Map
 
 Digital System Design (Week 2)
-│
-├── Numbers & Data
-│   ├── Positive Binary Numbers
-│   ├── 2's Complement Numbers
-│   └── Base-2 Conversions
-│
-├── Digital Logic & Circuit Design
-│   ├── Logic Gates
-│   │   ├── Basic Gates (AND, OR, NOT, etc.)
-│   │   └── Application in circuits (e.g., adders)
-│   ├── Truth Tables
-│   │   ├── Construction of truth tables
-│   │   └── Analysis including don't care conditions
-│   └── Circuit Construction
-│       └── Using gates to build circuits (Adder, ALU)
-│
-├── Simplification Techniques
-│   └── Karnaugh Maps (KMaps) for Boolean simplification
-│
-├── Simulation with LTSpice
-│   ├── Setup & Installation
-│   ├── Drawing & Wiring Components
-│   ├── Simulation (inputs, graphing, analysis)
-│   └── Creating Custom Symbols
-│
-└── Assignments & Resources
-    ├── Homework (2's complement & logic design)
-    ├── Lab Exercises (LTSpice, circuit building)
-    ├── Lecture Materials (slides, scribbled notes)
-    └── External Resources (GeeksforGeeks, video tutorials, LogicLibrary.zip)
 
-This structured outline and conceptual map should serve as a clear guide to the required topics, requests, and key terms for Week 2, providing a solid framework for both study and practical application in digital system design.
+```
+   ├── Numbers & Data
+   │      ├── Positive Binary Numbers
+   │      ├── 2's Complement Numbers
+   │      └── Base-2 Conversions
+   ├── Digital Logic & Circuit Design
+   │      ├── Logic Gates (AND, OR, NOT, etc.)
+   │      ├── Truth Tables (with “don’t care” conditions)
+   │      └── Circuit Construction (Adder, ALU)
+   ├── Simplification Techniques
+   │      └── Karnaugh Maps (KMaps)
+   ├── Simulation with LTSpice
+   │      ├── Setup & Installation
+   │      ├── Drawing & Wiring Components
+   │      └── Simulation & Analysis
+   └── Assignments & Resources
+          ├── Homework: 2's complement & logic design
+          ├── Lab Work: LTSpice exercises and circuit building
+          └── Supplementary Materials: Lecture notes, handouts, external resources
 ```
 
-Wednesday 1/29:  Other values you might want to store and KMaps.
+### Glossary
 
-Prep:
+- **Binary & 2’s Complement:**
+  Methods for representing numerical data in digital systems.
 
-Part 1: Reading on gates: https://www.geeksforgeeks.org/logic-gates/Links to an external site. .
+- **Logic Gates:**
+  Fundamental circuits (e.g., AND, OR, NOT) used to perform logic operations.
 
-Part 2: Review gates and creating logic from truth tables. Doing this part of the homework would be good prep.
+- **Truth Tables:**
+  Diagrams that map out outputs for every possible combination of inputs.
 
-Part 3: We'll do this in class but feel free to work ahead. KMap video (I couldn't find one I really liked... They all leave out something). Links to an external site.
+- **Circuit Construction:**
+  Assembling basic components to design functional digital circuits.
 
-Lecture notes:
+- **Karnaugh Maps (KMaps):**
+  Tools for visual Boolean expression simplification.
 
-From Monday: Numbers part 2 Download Numbers part 2
+- **LTSpice:**
+  A simulation environment for designing and analyzing electronic circuits.
 
-In Class (Lecture):
+- **Assignments & Deadlines:**
+  Scheduled tasks including lab work and homework submissions.
 
-First hour: Lecture will be on other kinds of data than numbers and KMaps.
+--------------------------------------------------
 
-In class (Lab):
+Section III: Wednesday 1/29 – Extended Data, KMaps & ALU Lab
+--------------------------------------------------
 
-Gates continued. Using simulator and building with gates. ALU.
+● **Prep:**
 
-Lab handout (Lab updated 1/29): CIS 240 Lab2 Building with gatesUPDATED.pdf Download CIS 240 Lab2 Building with gatesUPDATED.pdf
+- **Part 1:** Read about logic gates:
+    <https://www.geeksforgeeks.org/logic-gates/Links>
+- **Part 2:** Review gate operations and logic creation from truth tables.
+- **Part 3:** Optional: Preview a KMap video (note that many omit key details).
 
-Files for lab: LogicLibrary.zip  (((Same as Monday's file))) Download LogicLibrary.zip  (((Same as Monday's file)))
+● **Lecture Notes:**
 
-What's due:
+- Refer to Monday's "Numbers Part 2" slides. _(Download)_
 
-Lab stuff: Specified in lab handout. Due 2/3 midnight with Monday's lab products.
+● **In-Class (Lecture):**
 
-Homework: See Monday above. Due 2/3.
+- **First Hour:** Discussion on alternative data types beyond numbers and an introduction to Karnaugh Maps (KMaps).
 
->>>>>>>>>>>>> ======================== <<<<<<<<<<<<<<<<
+● **In-Class (Lab):**
 
-Next week's link: Week 3: Registers, memory and computer block diagram.
+- **Activity:** Continued exploration of logic gate simulation; building an ALU.
+- **Resources:**
+  - Lab Handout (Updated 1/29): _CIS 240 Lab2 Building with gatesUPDATED.pdf_ _(Download)_
+  - Lab Files: Use the same [LogicLibrary.zip](Download) as Monday.
+
+● **What's Due:**
+
+- **Lab Work:** All lab assignments specified in the handout are due by 2/3 midnight (include Monday’s lab products).
+- **Homework:** As outlined on Monday, due 2/3.
+
+● **Next Week Preview:**
+
+- Topics for Week 3 include Registers, Memory, and Computer Block Diagrams.

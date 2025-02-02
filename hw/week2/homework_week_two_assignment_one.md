@@ -1,11 +1,26 @@
-# Homework 2: HEX, 2's complement, logic from truth tables and KMaps
+# Homework 2: HEX, 2's Complement, Logic from Truth Tables and KMaps
 
-## Instructions
+## Homework Instructions
 
-[Homework 2](https://cuesta.instructure.com/courses/42443/files/8983716?wrap=1 "CIS 240 HW2 2z comp and building with gates.pdf") [Download Homework 2](https://cuesta.instructure.com/courses/42443/files/8983716/download?download_frd=1). Due 2/3/2025.
+- **Due Date:** 2/3/2025
+- **Access Homework 2:**
+  - [View Homework 2 Document](https://cuesta.instructure.com/courses/42443/files/8983716?wrap=1 "CIS 240 HW2 2z comp and building with gates.pdf")
+  - [Download Homework 2](https://cuesta.instructure.com/courses/42443/files/8983716/download?download_frd=1)
 
-The homework here is the same as is posted on the Week 2 page.
+The assignment details are identical to those posted on the Week 2 page.
 
-I'll do "don't cares" in class Monday. That should give you time to do the last problem before the homework is due. The short version is that if there is an output that is never seen (if you'll never see a particular input so you don't care what the output is), then you don't care what it is and in the table you write 'X' for that output's bit. Then, when you go to find logic, since that output will never be seen or used, you can pretend that output is anything that makes creating the logic easier for you. For us, since we are using SOP (sum of products) which adds a term every time you see a '1' in the output column, it's more convenient to just pretend the "don't cares" (Xs) are all '0's.
+## Key Concepts & Terminology
+
+- **HEX:** Hexadecimal numbering system, used for a compact representation of numbers.
+- **2's Complement:** A binary representation method that simplifies handling of positive and negative integers.
+- **Truth Tables:** Diagrams showing all possible input combinations and their corresponding outputs for logical operations.
+- **KMaps (Karnaugh Maps):** Visual tools employed to simplify Boolean expressions by grouping related terms.
+- **SOP (Sum of Products):** A canonical form in Boolean logic where individual product terms (AND operations) are summed (OR operation) together.
+
+## Explanation of "Don't Cares"
+
+- **"Don't Cares":**
+  - Represent outputs that never occur using an **'X'** in the truth table.
+  - When deriving the logic (especially using SOP), you can treat these **'X'** entries as **'0'** to simplify the process.
 
 ![[CIS 240 HW2 2z comp and building with gates.pdf]]
