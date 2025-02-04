@@ -20,8 +20,11 @@ class NumberSystemTransformer:
     def convert(self, value):
         # Convert the input number to a binary string representation
         try:
-            # Convert to integer and format as binary
-            return format(int(float(value)), 'b')
+            # Convert to integer, take absolute value if negative, then format as binary
+            n = int(float(value))
+            if n < 0:
+                n = abs(n)
+            return format(n, 'b')
         except ValueError:
             return ''
 
