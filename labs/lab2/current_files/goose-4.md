@@ -30,7 +30,7 @@ Visualizing Data
 5
 
 RO
-Let’s visualize these
+Let's visualize these
 
 
 I apolog
@@ -661,7 +661,7 @@ Retry
 
 
 RO
-Demonstrate the identification of Gray code areas in a kmap and truth table using a visualization tool to demonstrate it’s identity mechanism
+Demonstrate the identification of Gray code areas in a kmap and truth table using a visualization tool to demonstrate it's identity mechanism
 
 
 <advanced_reasoning_framework>
@@ -753,7 +753,7 @@ Retry
 
 
 RO
-Let’s add more truth table to kmap transformation visuals and demonstrations as well as interactive react components
+Let's add more truth table to kmap transformation visuals and demonstrations as well as interactive react components
 
 
 I'll create a comprehensive suite of artifacts that demonstrate the truth table to K-map transformation with interactive and visualization components.
@@ -883,7 +883,7 @@ Retry
 
 
 RO
-Explain the 00,01,11,10 used in the diagrams to illustrate a concept? I don’t understand how they connect to the truth table values.
+Explain the 00,01,11,10 used in the diagrams to illustrate a concept? I don't understand how they connect to the truth table values.
 
 
 <meta_cognitive_reasoning_framework>
