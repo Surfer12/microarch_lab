@@ -16,6 +16,11 @@ Author: Your Name
 Date: 2023-10-XX
 '''
 
+import sys
+import os
+sys.path.append(os.path.join(os.path.dirname(__file__), "../conversions/python"))
+from number_conversion_interactive import show_decimal_to_binary_steps, show_ieee754_visualization, show_multi_base_layout
+
 class NumberSystemTransformer:
     def convert(self, value):
         # Convert the input number to a binary string representation
@@ -230,10 +235,20 @@ def create_new_truth_table():
 
 
 def main():
-    import sys
     sys.stdout.write("Enter a decimal number: ")
     sys.stdout.flush()
     input_value = input()
+    try:
+        decimal_value = float(input_value)
+    except ValueError:
+        print("Invalid decimal number.")
+        return
+
+    # Display conversion details
+    show_decimal_to_binary_steps(decimal_value)
+    show_ieee754_visualization(decimal_value)
+    show_multi_base_layout(decimal_value)
+
     transformer = UnifiedNumberTransformer()
     result = transformer.transform_computational_state(input_value)
 
