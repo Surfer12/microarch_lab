@@ -110,39 +110,149 @@ class UnifiedNumberTransformer:
         }
 
 
-# New function to display the result in a clear and structured manner
-
 def display_transformation_result(result):
     print("\n=== Unified Transformation Result ===\n")
     print(f"Converted State: {result['converted_state']}\n")
+    print("Digital Design Best Practices Summary:")
+    print("  1. Begin with a comprehensive truth table that captures all input combinations and their outputs.")
+    print("  2. Leverage Karnaugh Maps (K-maps) with Gray code ordering to simplify and validate Boolean expressions.")
+    print("  3. Adapt the computational state into Python for effective simulation and further analysis.")
+    print("Follow these guidelines to design, analyze, and validate digital circuits accurately.\n")
 
-    print("Truth Table:")
-    print("This section provides a detailed, structured view of each bit's logic state and its Gray code conversion.")
-    print("It is essential for verifying digital logic computations. For example, observe how a bit's value is mapped to its Gray code equivalent.")
-    print("{:<10} {:<10} {:<10}".format("Index", "Bit", "Gray"))
-    for row in result['gray_coded_states']:
-        print("{:<10} {:<10} {:<10}".format(row['position'], row['bit'], row['gray']))
+    for i, tt in enumerate(result['truth_tables']):
+        print(f"Truth Table {i+1}:")
+        print("This section provides a detailed view of each bit's logic state and its Gray code conversion.")
+        print("{:<10} {:<10} {:<10}".format("Index", "Bit", "Gray"))
+        for row in result['gray_coded_states_list'][i]:
+            print("{:<10} {:<10} {:<10}".format(row['position'], row['bit'], row['gray']))
 
-    print("\nK-Map Representation:")
-    print("The Karnaugh Map (K-Map) aids in simplifying Boolean expressions by visually grouping adjacent bits.")
-    print("This grouping helps to optimize digital designs by identifying common factors and minimizing logic complexity.")
-    for key, value in result['kmap_representation'].items():
-        print(f"{key}: {value}")
+        print("\nK-Map Representation:")
+        print("The Karnaugh Map (K-Map) aids in simplifying Boolean expressions by visually grouping adjacent bits.")
+        for key, value in result['kmap_representations'][i].items():
+            print(f"{key}: {value}")
 
-    print("\nAdapted State:")
-    print("The Adapted State bridges the raw digital computations and their representation in Python.")
-    print("It translates the computational process into a structured mapping. For example, a key 'x2_0' with value [1, 0, 0, 0] confirms successful adaptation.")
-    print("{:<10} {:<30}".format("Key", "Value"))
-    for key, value in result['adapted_state'].items():
-        print("{:<10} {:<30}".format(key, str(value)))
+        print("\nAdapted State:")
+        print("The Adapted State bridges the raw digital computations and their representation in Python.")
+        print("{:<10} {:<30}".format("Key", "Value"))
+        for key, value in result['adapted_states'][i].items():
+            print("{:<10} {:<30}".format(key, str(value)))
+        print("\n" + "="*40 + "\n")
+
+
+def add_extra_rows(truth_table):
+    print("Adding extra rows to the current truth table.")
+    while True:
+        row_input = input("Enter extra row as 'position,bit' (or type 'done' to finish, 'view' to display table, 'bulk:' to enter multiple rows): ")
+        if row_input.lower() == 'done':
+            break
+        elif row_input.lower() == 'view':
+            print("\nCurrent Truth Table:")
+            for row in truth_table:
+                print(row)
+            continue
+        elif row_input.lower().startswith('bulk:'):
+            bulk_data = row_input[5:].strip()
+            entries = [entry.strip() for entry in bulk_data.split(';') if entry.strip()]
+            for entry in entries:
+                parts = entry.split(',')
+                if len(parts) != 2:
+                    print(f"Invalid bulk entry: {entry}. Expected format 'position,bit'.")
+                    continue
+                try:
+                    pos = int(parts[0].strip())
+                    bit = parts[1].strip()
+                    truth_table.append({'position': pos, 'bit': bit})
+                except Exception as e:
+                    print(f"Error processing entry {entry}: {e}")
+            continue
+        elif row_input.strip() == "":
+            print("Empty input. Please enter valid data.")
+            continue
+        else:
+            parts = row_input.split(',')
+            if len(parts) != 2:
+                print("Invalid input format. Please enter in the format 'position,bit'.")
+                continue
+            try:
+                pos = int(parts[0].strip())
+                bit = parts[1].strip()
+                truth_table.append({'position': pos, 'bit': bit})
+            except Exception as e:
+                print(f"Error processing input: {e}")
+    # Sort the truth table by position
+    truth_table = sorted(truth_table, key=lambda x: x['position'])
+    return truth_table
+
+
+def create_new_truth_table():
+    print("Creating a new truth table.")
+    new_table = []
+    while True:
+        row_input = input("Enter row as 'position,bit' (or type 'done' to finish, 'view' to display current table, 'bulk:' for multiple rows): ")
+        if row_input.lower() == 'done':
+            break
+        elif row_input.lower() == 'view':
+            print("\nCurrent New Truth Table:")
+            for row in new_table:
+                print(row)
+            continue
+        elif row_input.lower().startswith('bulk:'):
+            bulk_data = row_input[5:].strip()
+            entries = [entry.strip() for entry in bulk_data.split(';') if entry.strip()]
+            for entry in entries:
+                parts = entry.split(',')
+                if len(parts) != 2:
+                    print(f"Invalid bulk entry: {entry}. Expected format 'position,bit'.")
+                    continue
+                try:
+                    pos = int(parts[0].strip())
+                    bit = parts[1].strip()
+                    new_table.append({'position': pos, 'bit': bit})
+                except Exception as e:
+                    print(f"Error processing entry {entry}: {e}")
+            continue
+        elif row_input.strip() == "":
+            print("Empty input. Please enter valid data.")
+            continue
+        else:
+            parts = row_input.split(',')
+            if len(parts) != 2:
+                print("Invalid input format. Please enter in the format 'position,bit'.")
+                continue
+            try:
+                pos = int(parts[0].strip())
+                bit = parts[1].strip()
+                new_table.append({'position': pos, 'bit': bit})
+            except Exception as e:
+                print(f"Error processing input: {e}")
+    new_table = sorted(new_table, key=lambda x: x['position'])
+    return new_table
 
 
 def main():
     input_value = input("Enter a decimal number: ")
     transformer = UnifiedNumberTransformer()
     result = transformer.transform_computational_state(input_value)
-    display_transformation_result(result)
 
+    # Prepare lists to hold multiple truth tables and their corresponding data
+    truth_tables = [result['truth_table']]
+    kmap_representations = [result['kmap_representation']]
+    gray_coded_states_list = [result['gray_coded_states']]
+    adapted_states = [result['adapted_state']]
 
-if __name__ == "__main__":
-    main()
+    # Interactive prompt to modify the default truth table or add new ones
+    while True:
+        print("Do you want to modify the truth tables?")
+        print("1: Add extra rows to the default truth table")
+        print("2: Add a completely new truth table")
+        print("3: Continue")
+        choice = input("Enter your choice (1/2/3): ")
+        if choice == '1':
+            new_tt = add_extra_rows(truth_tables[-1])
+        elif choice == '2':
+            new_tt = create_new_truth_table()
+        elif choice == '3':
+            break
+
+    if __name__ == "__main__":
+        main()
