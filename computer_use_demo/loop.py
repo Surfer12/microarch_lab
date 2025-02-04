@@ -1,5 +1,15 @@
 from typing import Union, List
 
+# Temporary stubs for missing types
+class ToolResult:
+    error = None
+    output = None
+    base64_image = None
+
+BetaToolResultBlockParam = dict
+BetaTextBlockParam = dict
+BetaImageBlockParam = dict
+
 def _make_api_tool_result(
     result: ToolResult, tool_use_id: str
 ) -> BetaToolResultBlockParam:
