@@ -110,12 +110,38 @@ class UnifiedNumberTransformer:
         }
 
 
+# New function to display the result in a clear and structured manner
+
+def display_transformation_result(result):
+    print("\n=== Unified Transformation Result ===\n")
+    print(f"Converted State: {result['converted_state']}\n")
+
+    print("Truth Table:")
+    print("This section provides a detailed, structured view of each bit's logic state and its Gray code conversion.")
+    print("It is essential for verifying digital logic computations. For example, observe how a bit's value is mapped to its Gray code equivalent.")
+    print("{:<10} {:<10} {:<10}".format("Index", "Bit", "Gray"))
+    for row in result['gray_coded_states']:
+        print("{:<10} {:<10} {:<10}".format(row['position'], row['bit'], row['gray']))
+
+    print("\nK-Map Representation:")
+    print("The Karnaugh Map (K-Map) aids in simplifying Boolean expressions by visually grouping adjacent bits.")
+    print("This grouping helps to optimize digital designs by identifying common factors and minimizing logic complexity.")
+    for key, value in result['kmap_representation'].items():
+        print(f"{key}: {value}")
+
+    print("\nAdapted State:")
+    print("The Adapted State bridges the raw digital computations and their representation in Python.")
+    print("It translates the computational process into a structured mapping. For example, a key 'x2_0' with value [1, 0, 0, 0] confirms successful adaptation.")
+    print("{:<10} {:<30}".format("Key", "Value"))
+    for key, value in result['adapted_state'].items():
+        print("{:<10} {:<30}".format(key, str(value)))
+
+
 def main():
     input_value = input("Enter a decimal number: ")
     transformer = UnifiedNumberTransformer()
     result = transformer.transform_computational_state(input_value)
-    print("Unified Transformation Result:")
-    print(result)
+    display_transformation_result(result)
 
 
 if __name__ == "__main__":
