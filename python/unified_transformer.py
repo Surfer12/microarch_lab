@@ -230,7 +230,10 @@ def create_new_truth_table():
 
 
 def main():
-    input_value = input("Enter a decimal number: ")
+    import sys
+    sys.stdout.write("Enter a decimal number: ")
+    sys.stdout.flush()
+    input_value = input()
     transformer = UnifiedNumberTransformer()
     result = transformer.transform_computational_state(input_value)
 
@@ -242,11 +245,13 @@ def main():
 
     # Interactive prompt to modify the default truth table or add new ones
     while True:
-        print("Do you want to modify the truth tables?")
-        print("1: Add extra rows to the default truth table")
-        print("2: Add a completely new truth table")
-        print("3: Continue")
-        choice = input("Enter your choice (1/2/3): ")
+        print("Do you want to modify the truth tables?", flush=True)
+        print("1: Add extra rows to the default truth table", flush=True)
+        print("2: Add a completely new truth table", flush=True)
+        print("3: Continue", flush=True)
+        sys.stdout.write("Enter your choice (1/2/3): ")
+        sys.stdout.flush()
+        choice = input()
         if choice == '1':
             new_tt = add_extra_rows(truth_tables[-1])
         elif choice == '2':
@@ -254,5 +259,6 @@ def main():
         elif choice == '3':
             break
 
-    if __name__ == "__main__":
-        main()
+
+if __name__ == "__main__":
+    main()
