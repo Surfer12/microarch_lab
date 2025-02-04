@@ -259,6 +259,16 @@ def main():
         elif choice == '3':
             break
 
+    # After exiting interactive prompt, display the final transformation result
+    final_result = {
+        'converted_state': result['converted_state'],
+        'truth_tables': truth_tables,
+        'kmap_representations': kmap_representations,
+        'gray_coded_states_list': gray_coded_states_list,
+        'adapted_states': adapted_states
+    }
+    display_transformation_result(final_result)
+
 
 if __name__ == "__main__":
     main()
