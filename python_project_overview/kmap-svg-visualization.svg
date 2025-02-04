@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300">
+  <title>K-Map Geometric Reasoning Visualization</title>
+  
+  <!-- Background Grid -->
+  <rect x="50" y="50" width="300" height="200" fill="#f0f8ff" stroke="#4682B4" stroke-width="2"/>
+  
+  <!-- Gray Code Axes Labels -->
+  <text x="180" y="30" font-family="Arial" font-weight="bold">Gray Code Mapping</text>
+  
+  <text x="20" y="100" transform="rotate(-90 20,100)" font-family="Arial">X2</text>
+  <text x="60" y="280" font-family="Arial">(X1, X0)</text>
+  
+  <!-- Grid Cells with Logical State Representation -->
+  <g font-family="Arial" text-anchor="middle">
+    <text x="120" y="90" fill="#2F4F4F">00</text>
+    <text x="200" y="90" fill="#2F4F4F">01</text>
+    <text x="280" y="90" fill="#2F4F4F">11</text>
+    <text x="360" y="90" fill="#2F4F4F">10</text>
+    
+    <rect x="100" y="100" width="80" height="80" fill="#90EE90" fill-opacity="0.3" stroke="#4682B4"/>
+    <rect x="180" y="100" width="80" height="80" fill="#87CEFA" fill-opacity="0.3" stroke="#4682B4"/>
+    <rect x="260" y="100" width="80" height="80" fill="#DDA0DD" fill-opacity="0.3" stroke="#4682B4"/>
+    <rect x="340" y="100" width="80" height="80" fill="#F0E68C" fill-opacity="0.3" stroke="#4682B4"/>
+  </g>
+  
+  <!-- Logical Transformation Arrows -->
+  <g stroke="#FF6347" stroke-width="2" fill="none">
+    <path d="M140 140 L220 140" marker-end="url(#arrowhead)"/>
+    <path d="M220 140 L300 140" marker-end="url(#arrowhead)"/>
+  </g>
+  
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#FF6347"/>
+    </marker>
+  </defs>
+</svg>

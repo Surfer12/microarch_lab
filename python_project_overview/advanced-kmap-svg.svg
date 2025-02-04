@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 500">
+  <title>Advanced K-Map Geometric Reasoning Visualization</title>
+  
+  <!-- Sophisticated Background -->
+  <defs>
+    <linearGradient id="gridBackground" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#E6F3FF;stop-opacity:0.7"/>
+      <stop offset="100%" style="stop-color:#F0F8FF;stop-opacity:0.9"/>
+    </linearGradient>
+    
+    <pattern id="gridPattern" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#D1E8FF" stroke-width="0.5"/>
+    </pattern>
+  </defs>
+  
+  <!-- Comprehensive Grid Background -->
+  <rect x="50" y="50" width="500" height="400" fill="url(#gridBackground)" stroke="#4682B4" stroke-width="2"/>
+  <rect x="50" y="50" width="500" height="400" fill="url(#gridPattern)"/>
+  
+  <!-- Sophisticated Labeling -->
+  <g font-family="Arial" text-anchor="middle" font-weight="bold">
+    <text x="300" y="30" font-size="16" fill="#2C3E50">K-Map: Geometric Logic Transformation</text>
+    
+    <text x="20" y="250" transform="rotate(-90 20,250)" fill="#34495E">Input Variables (X2, X1)</text>
+    <text x="300" y="490" fill="#34495E">Gray Code Sequence (X0)</text>
+  </g>
+  
+  <!-- Gray Code Column Labels -->
+  <g font-family="Arial" text-anchor="middle" fill="#2C3E50">
+    <text x="150" y="90">00</text>
+    <text x="250" y="90">01</text>
+    <text x="350" y="90">11</text>
+    <text x="450" y="90">10</text>
+  </g>
+  
+  <!-- Row Labels -->
+  <g font-family="Arial" text-anchor="end" fill="#2C3E50">
+    <text x="40" y="150">X2 = 0</text>
+    <text x="40" y="350">X2 = 1</text>
+  </g>
+  
+  <!-- Interactive K-Map Cells with Advanced Styling -->
+  <g>
+    <g transform="translate(100,100)">
+      <rect width="80" height="80" fill="#90EE90" fill-opacity="0.3" stroke="#4682B4" stroke-width="1.5"/>
+      <text x="40" y="40" text-anchor="middle" fill="#2C3E50">1</text>
+    </g>
+    <g transform="translate(200,100)">
+      <rect width="80" height="80" fill="#87CEFA" fill-opacity="0.3" stroke="#4682B4" stroke-width="1.5"/>
+      <text x="40" y="40" text-anchor="middle" fill="#2C3E50">0</text>
+    </g>
+    <g transform="translate(300,100)">
+      <rect width="80" height="80" fill="#DDA0DD" fill-opacity="0.3" stroke="#4682B4" stroke-width="1.5"/>
+      <text x="40" y="40" text-anchor="middle" fill="#2C3E50">1</text>
+    </g>
+    <g transform="translate(400,100)">
+      <rect width="80" height="80" fill="#F0E68C" fill-opacity="0.3" stroke="#4682B4" stroke-width="1.5"/>
+      <text x="40" y="40" text-anchor="middle" fill="#2C3E50">0</text>
+    </g>
+  </g>
+  
+  <!-- Logical Transformation Indicators -->
+  <g stroke="#FF6347" stroke-width="2" fill="none">
+    <path d="M140 140 L220 140" marker-end="url(#arrowhead)"/>
+    <path d="M220 140 L300 140" marker-end="url(#arrowhead)"/>
+    <path d="M300 140 L380 140" marker-end="url(#arrowhead)"/>
+  </g>
+  
+  <!-- Grouping Visualization -->
+  <g stroke="#2ECC71" stroke-width="3" fill="none" stroke-dasharray="5,5">
+    <rect x="100" y="100" width="180" height="80" rx="10" ry="10" opacity="0.6"/>
+  </g>
+  
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#FF6347"/>
+    </marker>
+  </defs>
+</svg>

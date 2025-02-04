@@ -1,0 +1,126 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 800">
+  <title>Truth Table to K-Map Transformation Visualization</title>
+  
+  <!-- Sophisticated Background Gradient -->
+  <defs>
+    <linearGradient id="backgroundGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#E6F3FF;stop-opacity:0.7"/>
+      <stop offset="100%" style="stop-color:#F0F8FF;stop-opacity:0.9"/>
+    </linearGradient>
+  </defs>
+  
+  <rect width="1400" height="800" fill="url(#backgroundGradient)"/>
+  
+  <!-- Title -->
+  <text x="700" y="50" font-family="Arial" font-size="24" font-weight="bold" text-anchor="middle" fill="#2C3E50">
+    Truth Table to K-Map: Computational State Transformation
+  </text>
+  
+  <!-- Truth Table Section -->
+  <g transform="translate(50,100)">
+    <rect width="500" height="600" fill="#F0F8FF" stroke="#4682B4" rx="10"/>
+    <text x="250" y="30" font-family="Arial" font-size="18" text-anchor="middle" font-weight="bold" fill="#2C3E50">
+      Truth Table (8 Rows)
+    </text>
+    
+    <g font-family="Arial" font-size="12">
+      <!-- Table Headers -->
+      <text x="50" y="70" font-weight="bold" fill="#34495E">X2</text>
+      <text x="150" y="70" font-weight="bold" fill="#34495E">X1</text>
+      <text x="250" y="70" font-weight="bold" fill="#34495E">X0</text>
+      <text x="350" y="70" font-weight="bold" fill="#34495E">Output</text>
+      
+      <!-- Table Rows with Color Coding -->
+      <g fill="#2C3E50">
+        <text x="50" y="100">0</text>
+        <text x="150" y="100">0</text>
+        <text x="250" y="100">0</text>
+        <text x="350" y="100" fill="#2ECC71">1</text>
+        
+        <text x="50" y="130">0</text>
+        <text x="150" y="130">0</text>
+        <text x="250" y="130">1</text>
+        <text x="350" y="130" fill="#E74C3C">0</text>
+        
+        <text x="50" y="160">0</text>
+        <text x="150" y="160">1</text>
+        <text x="250" y="160">0</text>
+        <text x="350" y="160" fill="#E74C3C">0</text>
+        
+        <text x="50" y="190">0</text>
+        <text x="150" y="190">1</text>
+        <text x="250" y="190">1</text>
+        <text x="350" y="190" fill="#2ECC71">1</text>
+        
+        <text x="50" y="220">1</text>
+        <text x="150" y="220">0</text>
+        <text x="250" y="220">0</text>
+        <text x="350" y="220" fill="#2ECC71">1</text>
+        
+        <text x="50" y="250">1</text>
+        <text x="150" y="250">0</text>
+        <text x="250" y="250">1</text>
+        <text x="350" y="250" fill="#E74C3C">0</text>
+        
+        <text x="50" y="280">1</text>
+        <text x="150" y="280">1</text>
+        <text x="250" y="280">0</text>
+        <text x="350" y="280" fill="#2ECC71">1</text>
+        
+        <text x="50" y="310">1</text>
+        <text x="150" y="310">1</text>
+        <text x="250" y="310">1</text>
+        <text x="350" y="310" fill="#E74C3C">0</text>
+      </g>
+    </g>
+  </g>
+  
+  <!-- K-Map Section -->
+  <g transform="translate(800,100)">
+    <rect width="500" height="600" fill="#F0F8FF" stroke="#4682B4" rx="10"/>
+    <text x="250" y="30" font-family="Arial" font-size="18" text-anchor="middle" font-weight="bold" fill="#2C3E50">
+      K-Map (Gray Code Projection)
+    </text>
+    
+    <g font-family="Arial">
+      <!-- Column Labels -->
+      <text x="100" y="80" font-size="14" fill="#34495E">X1X0</text>
+      <text x="150" y="120" font-size="14" fill="#34495E">00</text>
+      <text x="250" y="120" font-size="14" fill="#34495E">01</text>
+      <text x="350" y="120" font-size="14" fill="#34495E">11</text>
+      <text x="450" y="120" font-size="14" fill="#34495E">10</text>
+      
+      <!-- Row Labels -->
+      <text x="50" y="170" font-size="14" fill="#34495E">X2=0</text>
+      <text x="50" y="370" font-size="14" fill="#34495E">X2=1</text>
+      
+      <!-- K-Map Cells with Color Coding -->
+      <g stroke="#4682B4" stroke-width="1">
+        <!-- X2=0 Row -->
+        <rect x="150" y="150" width="80" height="80" fill="#2ECC71" fill-opacity="0.3"/>
+        <rect x="250" y="150" width="80" height="80" fill="#E74C3C" fill-opacity="0.3"/>
+        <rect x="350" y="150" width="80" height="80" fill="#E74C3C" fill-opacity="0.3"/>
+        <rect x="450" y="150" width="80" height="80" fill="#2ECC71" fill-opacity="0.3"/>
+        
+        <!-- X2=1 Row -->
+        <rect x="150" y="250" width="80" height="80" fill="#2ECC71" fill-opacity="0.3"/>
+        <rect x="250" y="250" width="80" height="80" fill="#E74C3C" fill-opacity="0.3"/>
+        <rect x="350" y="250" width="80" height="80" fill="#2ECC71" fill-opacity="0.3"/>
+        <rect x="450" y="250" width="80" height="80" fill="#E74C3C" fill-opacity="0.3"/>
+      </g>
+      
+      <!-- Transformation Indicators -->
+      <g stroke="#FF6347" stroke-width="2" stroke-dasharray="5,5">
+        <path d="M190 190 L290 190" marker-end="url(#arrowhead)"/>
+        <path d="M390 190 L490 190" marker-end="url(#arrowhead)"/>
+      </g>
+    </g>
+  </g>
+  
+  <!-- Arrowhead Marker -->
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#FF6347"/>
+    </marker>
+  </defs>
+</svg>
