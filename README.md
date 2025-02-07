@@ -73,7 +73,7 @@ This repository is a comprehensive learning resource for exploring modern progra
    # Follow Mojo installation instructions
    ```
 
-4. Open in VSCode
+4. Open in VSCode s
    - Install recommended extensions
    - Open workspace settings
 
@@ -83,6 +83,22 @@ This repository is a comprehensive learning resource for exploring modern progra
 - Run examples in `/labs`
 - Interact with notebooks in `/resources/interactive_notebooks`
 - Experiment with simulators in `/resources/interactive_simulators`
+
+## Additional Lab Resources
+
+The Microarchitecture Learning Lab integrates several detailed lab exercises and supplementary resources to enhance your learning experience. Below are some key resources and updates:
+
+- **Lab 2: Building with Gates**: Detailed instructions and documentation are available in:
+  - [Lab Two Building with Gates](resources/Lab%20Two%20Building%20with%20Gates.md)
+  - [Lab Two Building with Gates - Alternative Version](resources/Lab%20Two%20Building%20with%20Gates-2.md)
+
+- **Additional Concepts**: For outlines and ideas on future lab assignments (e.g., digital sequential design, Boolean minimization, and timing analysis), see [Below are some additional concepts](resources/Below%20are%20some%20additional%20concepts.md).
+
+- **Spice Schematics & Static Diagrams**: The lab2schematixspice folder and interactive simulators now offer a "Static Diagram Example" option, providing a visual guide for circuit designs. Select this option from the simulator menu for an overview of key circuits.
+
+- **Documentation & File Management**: Refer to the 'after-directions' summary for insights into file generation, session logging, and overall documentation practices.
+
+These resources are designed to provide a comprehensive suite of materials that connect practical lab work with conceptual outlines and tools for advanced circuit visualization.
 
 ## Contributing
 
