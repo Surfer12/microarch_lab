@@ -17,7 +17,6 @@ jupyter==1.0.0
 # Performance and Profiling
 psutil==5.9.0
 memory-profiler==0.60.0
-tracemalloc==1.0.0  # Built-in module, version for reference
 
 # Simulation and Modeling
 simpy==4.0.1
@@ -38,4 +37,4 @@ scikit-learn==1.5.0
 # Memory Analysis
 guppy3==3.1.2  # Heap analysis
 objgraph==3.5.0  # Object graph visualization
-memory-profiler==0.60.0  # Memory usage tracking 
+memory-profiler==0.60.0  # Memory usage tracking
